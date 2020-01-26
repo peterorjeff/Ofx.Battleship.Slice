@@ -1,16 +1,16 @@
 ﻿using FluentValidation.TestHelper;
-using Ofx.Battleship.Application.Boards.Commands.CreateBoard;
+using Ofx.Battleship.API.Features.Boards;
 using Xunit;
 
 namespace Ofx.Battleship.Application.UnitTests.Boards.Commands.CreateBoard
 {
     public class CreateBoardCommandValidationTests
     {
-        private readonly CreateBoardCommandValidator _validator;
+        private readonly Create.CommandValidator _validator;
 
         public CreateBoardCommandValidationTests()
         {
-            _validator = new CreateBoardCommandValidator();
+            _validator = new Create.CommandValidator();
         }
 
         [Fact]

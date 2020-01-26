@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Ofx.Battleship.Application.Boards.Commands.CreateBoard;
+using Ofx.Battleship.API.Features.Boards;
 using Ofx.Battleship.WebAPI.IntegrationTests.Common;
 using System.Threading.Tasks;
 using Xunit;
@@ -21,7 +21,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Controllers.Boards
         {
             // Arrange
             var client = _factory.CreateClient();
-            var command = new CreateBoardCommand
+            var command = new Create.Command
             {
                 GameId = 1
             };
@@ -32,7 +32,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Controllers.Boards
 
             response.EnsureSuccessStatusCode();
 
-            var content = await GetResponseContent<BoardViewModel>(response);
+            var content = await GetResponseContent<Create.Model>(response);
 
             // Assert
             content.BoardId.Should().BePositive();

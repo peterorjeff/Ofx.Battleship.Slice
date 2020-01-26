@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FluentAssertions;
-using Ofx.Battleship.Application.Boards.Commands.CreateBoard;
+using Ofx.Battleship.API.Features.Boards;
 using Ofx.Battleship.Application.Common.Exceptions;
 using Ofx.Battleship.Application.UnitTests.Common;
 using System;
@@ -23,8 +23,8 @@ namespace Ofx.Battleship.Application.UnitTests.Boards.Commands.CreateBoard
         public async void Handle_GivenUnknownGameId_ShouldThrowNotFoundException()
         {   
             // Arrange
-            var command = new CreateBoardCommand { GameId = 100 };
-            var handler = new CreateBoardCommandHandler(_context, _mapper);
+            var command = new Create.Command { GameId = 100 };
+            var handler = new Create.Handler(_context, _mapper);
 
             // Act
             Func<Task> response = async () => await handler.Handle(command, CancellationToken.None);
@@ -37,8 +37,8 @@ namespace Ofx.Battleship.Application.UnitTests.Boards.Commands.CreateBoard
         public async void Handle_GivenKnownGameId_ShouldReturnNewBoardId()
         {
             // Arrange
-            var command = new CreateBoardCommand { GameId = 1 };
-            var handler = new CreateBoardCommandHandler(_context, _mapper);
+            var command = new Create.Command { GameId = 1 };
+            var handler = new Create.Handler(_context, _mapper);
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -51,22 +51,22 @@ namespace Ofx.Battleship.Application.UnitTests.Boards.Commands.CreateBoard
         public async void Handle_GivenKnownGameId_ShouldReturnBoardViewModel()
         {
             // Arrange
-            var command = new CreateBoardCommand { GameId = 1 };
-            var handler = new CreateBoardCommandHandler(_context, _mapper);
+            var command = new Create.Command { GameId = 1 };
+            var handler = new Create.Handler(_context, _mapper);
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
 
             // Assert
-            response.Should().BeOfType<BoardViewModel>();
+            response.Should().BeOfType<Create.Model>();
         }
 
         [Fact]
         public async void Handle_GivenRequestWithoutDimensions_ShouldReturnBoardWithDefaultDimensions()
         {
             // Arrange
-            var command = new CreateBoardCommand { GameId = 1 };
-            var handler = new CreateBoardCommandHandler(_context, _mapper);
+            var command = new Create.Command { GameId = 1 };
+            var handler = new Create.Handler(_context, _mapper);
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -80,13 +80,13 @@ namespace Ofx.Battleship.Application.UnitTests.Boards.Commands.CreateBoard
         public async void Handle_GivenRequestWithDimensions_ShouldReturnBoardWithSpecifiedDimensions()
         {
             // Arrange
-            var command = new CreateBoardCommand 
+            var command = new Create.Command 
             { 
                 GameId = 1,
                 DimensionX = 8,
                 DimensionY = 12
             };
-            var handler = new CreateBoardCommandHandler(_context, _mapper);
+            var handler = new Create.Handler(_context, _mapper);
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);

@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using Ofx.Battleship.Application.Common.Mappings;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ofx.Battleship.Application.UnitTests.Common
 {
@@ -13,6 +10,7 @@ namespace Ofx.Battleship.Application.UnitTests.Common
             ConfigurationProvider = new MapperConfiguration(configuration =>
             {
                 configuration.AddProfile<MappingProfile>();
+                configuration.AddProfile<API.Features.Boards.Create.MappingProfile>();
             });
 
             Mapper = ConfigurationProvider.CreateMapper();

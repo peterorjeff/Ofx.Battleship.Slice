@@ -15,6 +15,7 @@ using System.IO;
 using System.Reflection;
 using MediatR;
 using Ofx.Battleship.Application.Common.Behaviours;
+using AutoMapper;
 
 namespace Ofx.Battleship.WebAPI
 {
@@ -32,6 +33,7 @@ namespace Ofx.Battleship.WebAPI
             services.AddApplication();
             services.AddPersistence();
 
+            services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(Startup));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehaviour<,>));
 

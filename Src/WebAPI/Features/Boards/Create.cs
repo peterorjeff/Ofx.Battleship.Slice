@@ -3,11 +3,7 @@ using FluentValidation;
 using MediatR;
 using Ofx.Battleship.Application.Common.Exceptions;
 using Ofx.Battleship.Application.Common.Interfaces;
-using Ofx.Battleship.Application.Common.Mappings;
 using Ofx.Battleship.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -78,16 +74,17 @@ namespace Ofx.Battleship.API.Features.Boards
             }
         }
 
-        public class Model : IMapFrom<Board>
+        public class Model
         {
             public int BoardId { get; set; }
             public int DimensionX { get; set; }
             public int DimensionY { get; set; }
+        }
 
-            public void Mapping(Profile profile)
-            {
-                profile.CreateMap<Board, Model>();
-            }
+        public class MappingProfile : Profile
+        {
+            public MappingProfile() =>
+                CreateMap<Board, Model>(MemberList.Source);
         }
     }
 }
