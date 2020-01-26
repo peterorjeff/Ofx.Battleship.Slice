@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ofx.Battleship.Application.Games.Commands.CreateGame;
 using System.Threading.Tasks;
 
 namespace Ofx.Battleship.API.Features.Games

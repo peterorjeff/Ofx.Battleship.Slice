@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Src\Application\Application.csproj" />
     <ProjectReference Include="..\..\Src\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\..\Src\WebAPI\Battleship.API.csproj" />
   </ItemGroup>
 
 </Project>

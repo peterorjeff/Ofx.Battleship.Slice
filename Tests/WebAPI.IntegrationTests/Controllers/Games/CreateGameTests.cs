@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Ofx.Battleship.Application.Games.Commands.CreateGame;
 using Ofx.Battleship.WebAPI.IntegrationTests.Common;
 using System.Threading.Tasks;
 using Xunit;

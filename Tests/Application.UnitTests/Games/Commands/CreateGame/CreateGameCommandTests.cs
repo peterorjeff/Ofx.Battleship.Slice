@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FluentAssertions;
-using Ofx.Battleship.Application.Games.Commands.CreateGame;
+using Ofx.Battleship.API.Features.Games;
 using Ofx.Battleship.Application.UnitTests.Common;
 using System.Threading;
 using Xunit;
@@ -17,17 +17,16 @@ namespace Ofx.Battleship.Application.UnitTests.Games.Commands.CreateGame
         }
 
         [Fact]
-        public async void Handle_GivenValidRequest_ShouldReturnGameViewModelWithNewGameId()
+        public async void Handle_GivenValidRequest_ShouldReturnNewGameId()
         {
             // Arrange
-            var command = new CreateGameCommandHandler(_context, _mapper);
+            var command = new Create.Handler(_context);
 
             // Act
-            var response = await command.Handle(new CreateGameCommand(), CancellationToken.None);
+            var response = await command.Handle(new Create.Command(), CancellationToken.None);
 
             // Assert
-            response.Should().BeOfType<GameViewModel>();
-            response.GameId.Should().BePositive();
+            response.Should().BePositive();
         }
     }
 }
