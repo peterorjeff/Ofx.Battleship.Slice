@@ -13,6 +13,8 @@ using Ofx.Battleship.WebAPI.Extensions;
 using System;
 using System.IO;
 using System.Reflection;
+using MediatR;
+using Ofx.Battleship.Application.Common.Behaviours;
 
 namespace Ofx.Battleship.WebAPI
 {
@@ -29,6 +31,9 @@ namespace Ofx.Battleship.WebAPI
         {
             services.AddApplication();
             services.AddPersistence();
+
+            services.AddMediatR(typeof(Startup));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehaviour<,>));
 
             services
                 .AddControllers()

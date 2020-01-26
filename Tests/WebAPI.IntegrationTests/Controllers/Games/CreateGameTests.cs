@@ -27,10 +27,10 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Controllers.Games
             
             response.EnsureSuccessStatusCode();
 
-            var content = await GetResponseContent<GameViewModel>(response);
+            var gameId = await GetResponseContent<int>(response);
 
             // Assert
-            content.GameId.Should().BePositive();
+            gameId.Should().BePositive();
         }
     }
 }
