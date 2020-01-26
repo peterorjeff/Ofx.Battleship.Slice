@@ -26,9 +26,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Src\Persiste
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{60AF1974-643A-482F-BDE9-48154ADC4A17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "Src\WebAPI\WebAPI.csproj", "{017ADAD1-6F05-4F2C-BD79-3AE86C378CDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship.API", "Src\WebAPI\Battleship.API.csproj", "{017ADAD1-6F05-4F2C-BD79-3AE86C378CDD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI.IntegrationTests", "Tests\WebAPI.IntegrationTests\WebAPI.IntegrationTests.csproj", "{DB8F23CA-DF47-43EF-957D-D79CC9E95331}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship.API.IntegrationTests", "Tests\WebAPI.IntegrationTests\Battleship.API.IntegrationTests.csproj", "{DB8F23CA-DF47-43EF-957D-D79CC9E95331}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D2057550-4985-4996-9A8B-259A40A2F880}"
 	ProjectSection(SolutionItems) = preProject
