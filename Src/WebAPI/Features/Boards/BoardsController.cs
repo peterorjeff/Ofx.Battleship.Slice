@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ofx.Battleship.Application.Boards.Commands.CreateBoard;
 using System.Threading.Tasks;
 
-namespace Ofx.Battleship.API.Features
+namespace Ofx.Battleship.API.Features.Boards
 {
     public class BoardsController : BaseController
     {
@@ -16,12 +15,12 @@ namespace Ofx.Battleship.API.Features
         /// <response code="404">The Game could not be found.</response>
         /// <response code="500">An error has occurred</response>
         [HttpPost]
-        [Produces(typeof(BoardViewModel))]
-        [ProducesResponseType(typeof(BoardViewModel), 200)]
+        [Produces(typeof(Create.Model))]
+        [ProducesResponseType(typeof(Create.Model), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<BoardViewModel>> Create([FromBody] CreateBoardCommand command)
+        public async Task<ActionResult<Create.Model>> Create([FromBody] Create.Command command)
         {
             var board = await Mediator.Send(command);
 
