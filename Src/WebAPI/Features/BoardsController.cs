@@ -2,7 +2,7 @@
 using Ofx.Battleship.Application.Boards.Commands.CreateBoard;
 using System.Threading.Tasks;
 
-namespace Ofx.Battleship.WebAPI.Controllers
+namespace Ofx.Battleship.API.Features
 {
     public class BoardsController : BaseController
     {

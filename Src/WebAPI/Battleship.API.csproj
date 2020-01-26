@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <RootNamespace>Ofx.Battleship.WebAPI</RootNamespace>
-    <AssemblyName>Ofx.Battleship.WebAPI</AssemblyName>
+    <RootNamespace>Ofx.Battleship.API</RootNamespace>
+    <AssemblyName>Ofx.Battleship.API</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591;NU1605</NoWarn>
   </PropertyGroup>

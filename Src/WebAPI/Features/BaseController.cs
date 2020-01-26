@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Ofx.Battleship.WebAPI.Controllers
+namespace Ofx.Battleship.API.Features
 {
     [ApiController]
     [Route("api/[controller]")]

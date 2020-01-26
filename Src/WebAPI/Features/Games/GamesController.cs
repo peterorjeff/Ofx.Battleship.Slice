@@ -2,7 +2,7 @@
 using Ofx.Battleship.Application.Games.Commands.CreateGame;
 using System.Threading.Tasks;
 
-namespace Ofx.Battleship.WebAPI.Controllers
+namespace Ofx.Battleship.API.Features
 {
     public class GamesController : BaseController
     {

@@ -3,7 +3,7 @@ using Ofx.Battleship.Application.Ships.Commands.AttackShip;
 using Ofx.Battleship.Application.Ships.Commands.CreateShip;
 using System.Threading.Tasks;
 
-namespace Ofx.Battleship.WebAPI.Controllers
+namespace Ofx.Battleship.API.Features
 {
     public class ShipsController : BaseController
     {
