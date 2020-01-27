@@ -53,6 +53,7 @@ namespace Ofx.Battleship.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
                 c.IncludeXmlComments(xmlPath);
+                c.CustomSchemaIds(x => x.FullName);
             });
         }
 
