@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Ofx.Battleship.Application.Common.Interfaces;
-using Ofx.Battleship.Domain.Entities;
-using Ofx.Battleship.Persistence;
+using Ofx.Battleship.API.Data;
+using Ofx.Battleship.API.Entities;
 using System;
 
 namespace Ofx.Battleship.WebAPI.IntegrationTests.Common

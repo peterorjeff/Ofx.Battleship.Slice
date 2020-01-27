@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ofx.Battleship.Domain.Entities;
-using Ofx.Battleship.Persistence;
+using Ofx.Battleship.API.Data;
+using Ofx.Battleship.API.Entities;
 using System;
 
 namespace Ofx.Battleship.Application.UnitTests.Common

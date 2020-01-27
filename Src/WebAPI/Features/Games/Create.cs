@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using Ofx.Battleship.Application.Common.Interfaces;
-using Ofx.Battleship.Domain.Entities;
+using Ofx.Battleship.API.Data;
+using Ofx.Battleship.API.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
+using Ofx.Battleship.API.Data;
+using Ofx.Battleship.API.Entities;
 using Ofx.Battleship.API.Exceptions;
-using Ofx.Battleship.Application.Common.Interfaces;
-using Ofx.Battleship.Domain.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 

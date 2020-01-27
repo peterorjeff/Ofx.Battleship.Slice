@@ -1,4 +1,4 @@
-﻿using Ofx.Battleship.Persistence;
+﻿using Ofx.Battleship.API.Data;
 using System;
 
 namespace Ofx.Battleship.Application.UnitTests.Common

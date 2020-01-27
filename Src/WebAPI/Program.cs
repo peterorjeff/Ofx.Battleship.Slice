@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Ofx.Battleship.WebAPI
+namespace Ofx.Battleship.API
 {
     public class Program
     {

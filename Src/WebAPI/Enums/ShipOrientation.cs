@@ -1,4 +1,4 @@
-﻿namespace Ofx.Battleship.Domain.Enums
+﻿namespace Ofx.Battleship.API.Enums
 {
     public enum ShipOrientation
     {

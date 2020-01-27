@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ofx.Battleship.Application.Common.Interfaces;
-using Ofx.Battleship.Domain.Entities;
+using Ofx.Battleship.API.Entities;
 
-namespace Ofx.Battleship.Persistence
+namespace Ofx.Battleship.API.Data
 {
     public class BattleshipDbContext : DbContext, IBattleshipDbContext
     {

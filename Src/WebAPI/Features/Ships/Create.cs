@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Ofx.Battleship.API.Data;
+using Ofx.Battleship.API.Entities;
+using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Exceptions;
-using Ofx.Battleship.Application.Common.Interfaces;
-using Ofx.Battleship.Domain.Entities;
-using Ofx.Battleship.Domain.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -47,7 +47,7 @@ namespace Ofx.Battleship.API.Features.Ships
                         {
                             context.AddFailure($"Bow X ({bowX}) cannot be larger than board dimension ({board.DimensionX})");
                         }
-                        if (command.Orientation == Domain.Enums.ShipOrientation.Horizontal)
+                        if (command.Orientation == ShipOrientation.Horizontal)
                         {
                             if (bowX + command.Length > board.DimensionX)
                             {
@@ -69,7 +69,7 @@ namespace Ofx.Battleship.API.Features.Ships
                         {
                             context.AddFailure($"Bow Y ({bowY}) cannot be larger than board dimension ({board.DimensionY})");
                         }
-                        if (command.Orientation == Domain.Enums.ShipOrientation.Vertical)
+                        if (command.Orientation == ShipOrientation.Vertical)
                         {
                             if (bowY + command.Length > board.DimensionY)
                             {

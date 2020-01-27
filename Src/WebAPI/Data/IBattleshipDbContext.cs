@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Ofx.Battleship.Domain.Entities;
+using Ofx.Battleship.API.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Ofx.Battleship.Application.Common.Interfaces
+namespace Ofx.Battleship.API.Data
 {
     public interface IBattleshipDbContext
     {

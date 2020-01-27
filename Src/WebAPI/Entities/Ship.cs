@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ofx.Battleship.Domain.Entities
+namespace Ofx.Battleship.API.Entities
 {
     public class Ship
     {

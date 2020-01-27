@@ -1,7 +1,7 @@
 ﻿using FluentValidation.TestHelper;
+using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Features.Ships;
 using Ofx.Battleship.Application.UnitTests.Common;
-using Ofx.Battleship.Domain.Enums;
 using Xunit;
 
 namespace Ofx.Battleship.Application.UnitTests.Ships.Commands.CreateShip

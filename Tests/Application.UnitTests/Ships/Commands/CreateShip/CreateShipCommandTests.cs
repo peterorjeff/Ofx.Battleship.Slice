@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using FluentAssertions;
+using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Ships;
 using Ofx.Battleship.Application.UnitTests.Common;
-using Ofx.Battleship.Domain.Enums;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

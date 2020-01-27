@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Ofx.Battleship.API;
 using Ofx.Battleship.API.Features.Boards;
 using Ofx.Battleship.WebAPI.IntegrationTests.Common;
 using System.Threading.Tasks;

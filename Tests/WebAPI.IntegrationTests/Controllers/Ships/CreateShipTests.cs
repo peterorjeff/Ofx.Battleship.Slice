@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
+using Ofx.Battleship.API;
+using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Features.Ships;
-using Ofx.Battleship.Domain.Enums;
 using Ofx.Battleship.WebAPI.IntegrationTests.Common;
 using System.Threading.Tasks;
 using Xunit;

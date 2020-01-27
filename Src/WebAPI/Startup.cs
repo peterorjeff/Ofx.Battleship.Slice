@@ -9,15 +9,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Ofx.Battleship.API.Behaviours;
-using Ofx.Battleship.Application;
-using Ofx.Battleship.Application.Common.Interfaces;
-using Ofx.Battleship.Persistence;
 using Ofx.Battleship.WebAPI.Extensions;
 using System;
 using System.IO;
 using System.Reflection;
+using Ofx.Battleship.API.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace Ofx.Battleship.WebAPI
+namespace Ofx.Battleship.API
 {
     public class Startup
     {
@@ -30,7 +29,10 @@ namespace Ofx.Battleship.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPersistence();
+            services.AddDbContext<BattleshipDbContext>(options =>
+                options.UseInMemoryDatabase("BattleshipTestDatabase"));
+
+            services.AddScoped<IBattleshipDbContext>(provider => provider.GetService<BattleshipDbContext>());
 
             services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(Startup));
