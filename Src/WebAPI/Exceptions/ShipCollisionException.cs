@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ofx.Battleship.Application.Common.Exceptions
+namespace Ofx.Battleship.API.Exceptions
 {
     public class ShipCollisionException : Exception
     {

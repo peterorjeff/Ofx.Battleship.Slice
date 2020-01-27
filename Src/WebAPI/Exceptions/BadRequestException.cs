@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ofx.Battleship.Application.Common.Exceptions
+namespace Ofx.Battleship.API.Exceptions
 {
     public class BadRequestException : Exception
     {
