@@ -8,13 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{9AE5E782-3
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{6F0DAEAC-717E-419C-9B84-8B71C36CBC53}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5A00AF41-A0C2-41FF-9E6E-3F9D64F1C804}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "Tests\Application.UnitTests\Application.UnitTests.csproj", "{388000C9-A141-4C7B-BF55-02E4A2174C07}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{60AF1974-643A-482F-BDE9-48154ADC4A17}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship.API", "Src\WebAPI\Battleship.API.csproj", "{017ADAD1-6F05-4F2C-BD79-3AE86C378CDD}"
 EndProject
@@ -46,12 +40,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{388000C9-A141-4C7B-BF55-02E4A2174C07} = {5A00AF41-A0C2-41FF-9E6E-3F9D64F1C804}
-		{60AF1974-643A-482F-BDE9-48154ADC4A17} = {6F0DAEAC-717E-419C-9B84-8B71C36CBC53}
-		{017ADAD1-6F05-4F2C-BD79-3AE86C378CDD} = {60AF1974-643A-482F-BDE9-48154ADC4A17}
-		{DB8F23CA-DF47-43EF-957D-D79CC9E95331} = {5A00AF41-A0C2-41FF-9E6E-3F9D64F1C804}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39575C76-B5F7-4B08-A122-8791808B931C}
