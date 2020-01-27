@@ -2,13 +2,13 @@
 using FluentAssertions;
 using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Boards;
-using Ofx.Battleship.Application.UnitTests.Common;
+using Ofx.Battleship.API.UnitTests.Common;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Ofx.Battleship.Application.UnitTests.Boards.Commands.CreateBoard
+namespace Ofx.Battleship.API.UnitTests.Boards.Commands.CreateBoard
 {
     public class CreateBoardCommandTests : CommandTestBase, IClassFixture<MappingTestFixture>
     {

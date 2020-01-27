@@ -3,7 +3,7 @@ using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Entities;
 using System;
 
-namespace Ofx.Battleship.Application.UnitTests.Common
+namespace Ofx.Battleship.API.UnitTests.Common
 {
     public class BattleshipDbContextFactory
     {

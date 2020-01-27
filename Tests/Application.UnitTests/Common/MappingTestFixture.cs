@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Ofx.Battleship.Application.UnitTests.Common
+namespace Ofx.Battleship.API.UnitTests.Common
 {
     public class MappingTestFixture
     {
@@ -8,8 +8,8 @@ namespace Ofx.Battleship.Application.UnitTests.Common
         {
             ConfigurationProvider = new MapperConfiguration(configuration =>
             {
-                configuration.AddProfile<API.Features.Boards.Create.MappingProfile>();
-                configuration.AddProfile<API.Features.Ships.Attack.MappingProfile>();
+                configuration.AddProfile<Features.Boards.Create.MappingProfile>();
+                configuration.AddProfile<Features.Ships.Attack.MappingProfile>();
             });
 
             Mapper = ConfigurationProvider.CreateMapper();

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Ofx.Battleship.API.Features.Games;
-using Ofx.Battleship.Application.UnitTests.Common;
+using Ofx.Battleship.API.UnitTests.Common;
 using System.Threading;
 using Xunit;
 
-namespace Ofx.Battleship.Application.UnitTests.Games.Commands.CreateGame
+namespace Ofx.Battleship.API.UnitTests.Games.Commands.CreateGame
 {
     public class CreateGameCommandTests : CommandTestBase, IClassFixture<MappingTestFixture>
     {

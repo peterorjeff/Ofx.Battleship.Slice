@@ -2,13 +2,13 @@
 using FluentAssertions;
 using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Ships;
-using Ofx.Battleship.Application.UnitTests.Common;
+using Ofx.Battleship.API.UnitTests.Common;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Ofx.Battleship.Application.UnitTests.Ships.Commands.AttackShip
+namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
 {
     public class AttackShipCommandTests : CommandTestBase, IClassFixture<MappingTestFixture>
     {

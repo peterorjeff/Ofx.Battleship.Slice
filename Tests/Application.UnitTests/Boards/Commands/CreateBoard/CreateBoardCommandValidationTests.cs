@@ -2,7 +2,7 @@
 using Ofx.Battleship.API.Features.Boards;
 using Xunit;
 
-namespace Ofx.Battleship.Application.UnitTests.Boards.Commands.CreateBoard
+namespace Ofx.Battleship.API.UnitTests.Boards.Commands.CreateBoard
 {
     public class CreateBoardCommandValidationTests
     {
