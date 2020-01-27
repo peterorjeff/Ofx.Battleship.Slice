@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.WebAPI.IntegrationTests.Common.Utilities;
 
-namespace Ofx.Battleship.WebAPI.IntegrationTests.Controllers.Games
+namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Games
 {
     public class CreateGameTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
     {

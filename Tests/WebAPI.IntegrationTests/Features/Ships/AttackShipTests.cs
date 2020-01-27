@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.WebAPI.IntegrationTests.Common.Utilities;
 
-namespace Ofx.Battleship.WebAPI.IntegrationTests.Controllers.Ships
+namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Ships
 {
     public class AttackShipTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
     {

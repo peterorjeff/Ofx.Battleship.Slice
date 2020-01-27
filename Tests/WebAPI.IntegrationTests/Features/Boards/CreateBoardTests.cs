@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.WebAPI.IntegrationTests.Common.Utilities;
 
-namespace Ofx.Battleship.WebAPI.IntegrationTests.Controllers.Boards
+namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Boards
 {
     public class CreateBoardTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
     {
