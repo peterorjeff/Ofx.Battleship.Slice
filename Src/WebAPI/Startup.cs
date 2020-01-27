@@ -30,7 +30,6 @@ namespace Ofx.Battleship.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplication();
             services.AddPersistence();
 
             services.AddAutoMapper(typeof(Startup));
