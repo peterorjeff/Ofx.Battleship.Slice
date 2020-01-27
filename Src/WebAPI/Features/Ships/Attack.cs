@@ -2,11 +2,9 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Ofx.Battleship.Application.Common.Exceptions;
+using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.Application.Common.Interfaces;
 using Ofx.Battleship.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;

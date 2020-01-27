@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FluentAssertions;
+using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Boards;
-using Ofx.Battleship.Application.Common.Exceptions;
 using Ofx.Battleship.Application.UnitTests.Common;
 using System;
 using System.Threading;

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Ofx.Battleship.Application.Common.Exceptions;
+using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.Application.Common.Interfaces;
 using Ofx.Battleship.Domain.Entities;
 using Ofx.Battleship.Domain.Enums;

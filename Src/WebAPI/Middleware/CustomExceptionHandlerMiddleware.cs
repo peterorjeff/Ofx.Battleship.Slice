@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using Ofx.Battleship.Application.Common.Exceptions;
+using Ofx.Battleship.API.Exceptions;
 using System;
 using System.Net;
 using System.Threading.Tasks;

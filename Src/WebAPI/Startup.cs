@@ -1,4 +1,6 @@
+using AutoMapper;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
+using Ofx.Battleship.API.Behaviours;
 using Ofx.Battleship.Application;
 using Ofx.Battleship.Application.Common.Interfaces;
 using Ofx.Battleship.Persistence;
@@ -13,9 +16,6 @@ using Ofx.Battleship.WebAPI.Extensions;
 using System;
 using System.IO;
 using System.Reflection;
-using MediatR;
-using Ofx.Battleship.Application.Common.Behaviours;
-using AutoMapper;
 
 namespace Ofx.Battleship.WebAPI
 {
