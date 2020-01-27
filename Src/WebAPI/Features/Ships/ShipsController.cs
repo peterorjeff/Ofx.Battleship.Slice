@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Ofx.Battleship.Application.Ships.Commands.AttackShip;
 using System.Threading.Tasks;
 
 namespace Ofx.Battleship.API.Features.Ships
@@ -38,12 +37,12 @@ namespace Ofx.Battleship.API.Features.Ships
         /// <response code="404">The game Board could not be found.</response>
         /// <response code="500">An error has occurred</response>
         [HttpPut("attack")]
-        [Produces(typeof(AttackViewModel))]
-        [ProducesResponseType(typeof(AttackViewModel), 200)]
+        [Produces(typeof(Attack.Model))]
+        [ProducesResponseType(typeof(Attack.Model), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<AttackViewModel>> Attack([FromBody] AttackShipCommand command)
+        public async Task<ActionResult<Attack.Model>> Attack([FromBody] Attack.Command command)
         {
             var attack = await Mediator.Send(command);
 

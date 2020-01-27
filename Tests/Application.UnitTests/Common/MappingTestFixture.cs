@@ -11,6 +11,7 @@ namespace Ofx.Battleship.Application.UnitTests.Common
             {
                 configuration.AddProfile<MappingProfile>();
                 configuration.AddProfile<API.Features.Boards.Create.MappingProfile>();
+                configuration.AddProfile<API.Features.Ships.Attack.MappingProfile>();
             });
 
             Mapper = ConfigurationProvider.CreateMapper();

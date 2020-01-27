@@ -1,5 +1,5 @@
 ﻿using FluentValidation.TestHelper;
-using Ofx.Battleship.Application.Ships.Commands.AttackShip;
+using Ofx.Battleship.API.Features.Ships;
 using Ofx.Battleship.Application.UnitTests.Common;
 using Xunit;
 
@@ -7,18 +7,18 @@ namespace Ofx.Battleship.Application.UnitTests.Ships.Commands.AttackShip
 {
     public class AttackShipCommandValidationTests : CommandTestBase
     {
-        private readonly AttackShipCommandValidator _validator;
+        private readonly Attack.CommandValidator _validator;
 
         public AttackShipCommandValidationTests()
         {
-            _validator = new AttackShipCommandValidator(_context);
+            _validator = new Attack.CommandValidator(_context);
         }
 
         [Fact]
         public void GivenInvalidBoardId_ShouldHaveValidationError()
         {
             // Arrange
-            var command = new AttackShipCommand { BoardId = -1 };
+            var command = new Attack.Command { BoardId = -1 };
 
             // Act
             var result = _validator.TestValidate(command);
@@ -33,7 +33,7 @@ namespace Ofx.Battleship.Application.UnitTests.Ships.Commands.AttackShip
         public void GivenInvalidBowX_ShouldHaveValidationError(int attackX)
         {
             // Arrange
-            var command = new AttackShipCommand
+            var command = new Attack.Command
             {
                 BoardId = 1,
                 AttackX = attackX,
@@ -53,7 +53,7 @@ namespace Ofx.Battleship.Application.UnitTests.Ships.Commands.AttackShip
         public void GivenInvalidAttackY_ShouldHaveValidationError(int attackY)
         {
             // Arrange
-            var command = new AttackShipCommand
+            var command = new Attack.Command
             {
                 BoardId = 1,
                 AttackX = 1,
