@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ofx.Battleship.Application.Ships.Commands.AttackShip;
-using Ofx.Battleship.Application.Ships.Commands.CreateShip;
 using System.Threading.Tasks;
 
 namespace Ofx.Battleship.API.Features.Ships
@@ -17,12 +16,12 @@ namespace Ofx.Battleship.API.Features.Ships
         /// <response code="404">The game Board could not be found.</response>
         /// <response code="500">An error has occurred</response>
         [HttpPost]
-        [Produces(typeof(ShipViewModel))]
-        [ProducesResponseType(typeof(ShipViewModel), 200)]
+        [Produces(typeof(int))]
+        [ProducesResponseType(typeof(int), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult<ShipViewModel>> Create([FromBody] CreateShipCommand command)
+        public async Task<ActionResult<int>> Create([FromBody] Create.Command command)
         {
             var ship = await Mediator.Send(command);
 

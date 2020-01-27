@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Ofx.Battleship.Application.Ships.Commands.CreateShip;
+using Ofx.Battleship.API.Features.Ships;
 using Ofx.Battleship.Domain.Enums;
 using Ofx.Battleship.WebAPI.IntegrationTests.Common;
 using System.Threading.Tasks;
@@ -22,7 +22,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Controllers.Ships
         {
             // Arrange
             var client = _factory.CreateClient();
-            var command = new CreateShipCommand
+            var command = new Create.Command
             {
                 BoardId = 1,
                 BowX = 3,
@@ -37,10 +37,10 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Controllers.Ships
 
             response.EnsureSuccessStatusCode();
 
-            var content = await GetResponseContent<ShipViewModel>(response);
+            var shipId = await GetResponseContent<int>(response);
 
             // Assert
-            content.ShipId.Should().BePositive();
+            shipId.Should().BePositive();
         }
     }
 }
