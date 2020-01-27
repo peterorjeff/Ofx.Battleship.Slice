@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\WebAPI\Battleship.API.csproj" />
+    <ProjectReference Include="..\Ofx.Battleship.API\Battleship.API.csproj" />
   </ItemGroup>
 
 </Project>
