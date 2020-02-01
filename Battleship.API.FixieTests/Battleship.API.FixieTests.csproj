@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Fixie" Version="2.2.0" />
+    <PackageReference Include="FluentAssertions" Version="5.10.0" />
+    <DotNetCliToolReference Include="Fixie.Console" Version="2.2.0" />
+  </ItemGroup>
+
 </Project>
