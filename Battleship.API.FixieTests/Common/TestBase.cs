@@ -5,10 +5,12 @@ namespace Ofx.Battleship.API.FixieTests.Common
 {
     public class TestBase : IDisposable
     {
+        protected readonly IntegrationTestWebApplicationFactory<Startup> _factory;
         protected readonly BattleshipDbContext _context;
 
-        public TestBase()
+        public TestBase(IntegrationTestWebApplicationFactory<Startup> factory)
         {
+            _factory = factory;
             _context = BattleshipDbContextFactory.Create();
         }
 
