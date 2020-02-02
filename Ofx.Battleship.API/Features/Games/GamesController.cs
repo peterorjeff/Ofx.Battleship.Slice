@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Ofx.Battleship.API.Features.Games.Create;
 using System.Threading.Tasks;
 
 namespace Ofx.Battleship.API.Features.Games
@@ -17,7 +18,7 @@ namespace Ofx.Battleship.API.Features.Games
         [ProducesResponseType(500)]
         public async Task<ActionResult<int>> Create()
         {
-            var gameId = await Mediator.Send(new Create.Command());
+            var gameId = await Mediator.Send(new Command());
 
             return Ok(gameId);
         }
