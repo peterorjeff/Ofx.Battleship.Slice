@@ -38,7 +38,6 @@ namespace Ofx.Battleship.API.UnitTests.Common
 
             var player = new Player
             {
-                PlayerId = 1,
                 Name = "Pete"
             };
             context.Players.Add(player);
