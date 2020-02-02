@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Ofx.Battleship.API.Exceptions;
-using Ofx.Battleship.API.Features.Ships;
+using Ofx.Battleship.API.Features.Ships.Attack;
 using Ofx.Battleship.API.UnitTests.Common;
 using System;
 using System.Threading;
@@ -23,11 +23,11 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
         public async void Handle_GivenUnknownBoardId_ShouldThrowNotFoundException()
         {
             // Arrange
-            var command = new Attack.Command
+            var command = new Command
             {
                 BoardId = 100
             };
-            var handler = new Attack.Handler(_context, _mapper);
+            var handler = new Handler(_context, _mapper);
 
             // Act
             Func<Task> response = async () => await handler.Handle(command, CancellationToken.None);
@@ -40,32 +40,32 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
         public async void Handle_GivenKnownBoardId_ShouldReturnAttackModel()
         {
             // Arrange
-            var command = new Attack.Command
+            var command = new Command
             {
                 BoardId = 1,
                 AttackX = 1,
                 AttackY = 1
             };
-            var handler = new Attack.Handler(_context, _mapper);
+            var handler = new Handler(_context, _mapper);
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
 
             // Assert
-            response.Should().BeOfType<Attack.Model>();
+            response.Should().BeOfType<Model>();
         }
 
         [Fact]
         public async void Handle_GivenAttackOnShip_ShouldReturnHit()
         {
             // Arrange
-            var command = new Attack.Command
+            var command = new Command
             {
                 BoardId = 1,
                 AttackX = 1,
                 AttackY = 1
             };
-            var handler = new Attack.Handler(_context, _mapper);
+            var handler = new Handler(_context, _mapper);
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -80,13 +80,13 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
         public async void Handle_GivenAttackOnWater_ShouldReturnMiss()
         {
             // Arrange
-            var command = new Attack.Command
+            var command = new Command
             {
                 BoardId = 1,
                 AttackX = 9,
                 AttackY = 9
             };
-            var handler = new Attack.Handler(_context, _mapper);
+            var handler = new Handler(_context, _mapper);
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);

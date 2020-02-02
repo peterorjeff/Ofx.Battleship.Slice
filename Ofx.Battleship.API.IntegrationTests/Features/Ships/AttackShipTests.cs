@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Ofx.Battleship.API;
-using Ofx.Battleship.API.Features.Ships;
+using Ofx.Battleship.API.Features.Ships.Attack;
 using Ofx.Battleship.WebAPI.IntegrationTests.Common;
 using System.Threading.Tasks;
 using Xunit;
@@ -22,7 +22,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Ships
         {
             // Arrange
             var client = _factory.CreateClient();
-            var command = new Attack.Command
+            var command = new Command
             {
                 BoardId = 1,
                 AttackX = 1,
@@ -35,7 +35,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Ships
 
             response.EnsureSuccessStatusCode();
 
-            var content = await GetResponseContent<Attack.Model>(response);
+            var content = await GetResponseContent<Model>(response);
 
             // Assert
             content.Hit.Should().BeTrue();
@@ -48,7 +48,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Ships
         {
             // Arrange
             var client = _factory.CreateClient();
-            var command = new Attack.Command
+            var command = new Command
             {
                 BoardId = 1,
                 AttackX = 9,
@@ -61,7 +61,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Ships
 
             response.EnsureSuccessStatusCode();
 
-            var content = await GetResponseContent<Attack.Model>(response);
+            var content = await GetResponseContent<Model>(response);
 
             // Assert
             content.Hit.Should().BeFalse();
