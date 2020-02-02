@@ -11,6 +11,7 @@ namespace Ofx.Battleship.API.Data
         DbSet<Board> Boards { get; set; }
         DbSet<Ship> Ships { get; set; }
         DbSet<ShipPart> ShipParts { get; set; }
+        DbSet<Player> Players { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

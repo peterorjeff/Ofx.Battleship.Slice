@@ -14,5 +14,6 @@ namespace Ofx.Battleship.API.Data
         public DbSet<Board> Boards { get; set; }
         public DbSet<Ship> Ships { get; set; }
         public DbSet<ShipPart> ShipParts { get; set; }
+        public DbSet<Player> Players { get; set; }
     }
 }
