@@ -30,3 +30,22 @@ I made use of several libraries to aid clean architecture:
 - AutoMapper: https://automapper.org/
 - Fluent Validation https://fluentvalidation.net/
 - Fluent Assertions: https://fluentassertions.com/introduction
+
+## ToDo
+Features to add with the aim of a playable game:
+
+- Players concept
+- Player ship inventory, number ot different size ships to add to board
+  - pre-defined ship names/sizes
+- Turn concept
+  - hit = another turn
+  - miss = other player turn
+- Game over
+  - all ships on board sunk
+
+## Future
+Some other things to play with in future:
+
+- Remodel resources: https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling
+- Pages front end
+- SignalR for multi-player
