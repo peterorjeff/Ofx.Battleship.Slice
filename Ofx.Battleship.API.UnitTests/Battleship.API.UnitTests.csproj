@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <RootNamespace>Ofx.Battleship.Application.UnitTests</RootNamespace>
-    <AssemblyName>Ofx.Battleship.Application.UnitTests</AssemblyName>
+    <RootNamespace>Ofx.Battleship.API.UnitTests</RootNamespace>
+    <AssemblyName>Ofx.Battleship.API.UnitTests</AssemblyName>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
