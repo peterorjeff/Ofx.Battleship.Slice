@@ -36,6 +36,13 @@ namespace Ofx.Battleship.API.UnitTests.Common
                 new ShipPart { Ship = ship, X = 1, Y = 2 }
             });
 
+            var player = new Player
+            {
+                PlayerId = 1,
+                Name = "Pete"
+            };
+            context.Players.Add(player);
+
             context.SaveChanges();
 
             return context;

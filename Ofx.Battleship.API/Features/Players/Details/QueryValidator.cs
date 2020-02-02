@@ -7,6 +7,7 @@ namespace Ofx.Battleship.API.Features.Players.Details
         public QueryValidator()
         {
             RuleFor(x => x.Id)
+                .GreaterThan(0)
                 .NotEmpty();
         }
     }
