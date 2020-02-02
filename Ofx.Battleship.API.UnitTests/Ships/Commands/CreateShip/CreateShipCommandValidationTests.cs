@@ -1,6 +1,6 @@
 ﻿using FluentValidation.TestHelper;
 using Ofx.Battleship.API.Enums;
-using Ofx.Battleship.API.Features.Ships;
+using Ofx.Battleship.API.Features.Ships.Create;
 using Ofx.Battleship.API.UnitTests.Common;
 using Xunit;
 
@@ -8,18 +8,18 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
 {
     public class CreateShipCommandValidationTests : CommandTestBase
     {
-        private readonly Create.CommandValidator _validator;
+        private readonly CommandValidator _validator;
 
         public CreateShipCommandValidationTests()
         {
-            _validator = new Create.CommandValidator(_context);
+            _validator = new CommandValidator(_context);
         }
 
         [Fact]
         public void GivenInvalidBoardId_ShouldHaveValidationError()
         {
             // Arrange
-            var command = new Create.Command { BoardId = -1 };
+            var command = new Command { BoardId = -1 };
 
             // Act
             var result = _validator.TestValidate(command);
@@ -34,7 +34,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public void GivenInvalidBowX_ShouldHaveValidationError(int bowX)
         {
             // Arrange
-            var command = new Create.Command 
+            var command = new Command 
             {
                 BoardId = 1,
                 BowX = bowX
@@ -53,7 +53,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public void GivenInvalidBowY_ShouldHaveValidationError(int bowY)
         {
             // Arrange
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 1,
                 BowY = bowY
@@ -70,7 +70,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public void GivenBowXAndLengthGreaterThanHorizontalBoardDimension_ShouldHaveValidationError()
         {
             // Arrange
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 1,
                 BowX = 8,
@@ -89,7 +89,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public void GivenBowYAndLengthGreaterThanVerticalBoardDimension_ShouldHaveValidationError()
         {
             // Arrange
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 1,
                 BowY = 8,
@@ -110,7 +110,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public void GivenInvalidLength_ShouldHaveValidationError(int length)
         {
             // Arrange
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 1,
                 BowX = 1,
@@ -129,7 +129,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public void GivenInvalidOrientation_ShouldHaveValidationError()
         {
             // Arrange
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 1,
                 Orientation = (ShipOrientation)3

@@ -2,7 +2,7 @@
 using FluentAssertions;
 using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Exceptions;
-using Ofx.Battleship.API.Features.Ships;
+using Ofx.Battleship.API.Features.Ships.Create;
 using Ofx.Battleship.API.UnitTests.Common;
 using System;
 using System.Threading;
@@ -24,7 +24,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public async void Handle_GivenUnknownBoardId_ShouldThrowNotFoundException()
         {
             // Arrange
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 100,
                 BowX = 1,
@@ -32,7 +32,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Length = 2,
                 Orientation = ShipOrientation.Horizontal
             };
-            var handler = new Create.Handler(_context);
+            var handler = new Handler(_context);
 
             // Act
             Func<Task> response = async () => await handler.Handle(command, CancellationToken.None);
@@ -45,7 +45,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public async void Handle_GivenKnownBoardId_ShouldReturnNewShipId()
         {
             // Arrange
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 1,
                 BowX = 2,
@@ -53,7 +53,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Length = 2,
                 Orientation = ShipOrientation.Horizontal
             };
-            var handler = new Create.Handler(_context);
+            var handler = new Handler(_context);
 
             // Act
             var shipId = await handler.Handle(command, CancellationToken.None);
@@ -66,7 +66,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         public async void Handle_GivenCollidingShip_ShouldThrowShipCollisionException()
         {
             // Arrange
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 1,
                 BowX = 1,
@@ -74,7 +74,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Length = 2,
                 Orientation = ShipOrientation.Horizontal
             };
-            var handler = new Create.Handler(_context);
+            var handler = new Handler(_context);
 
             // Act
             Func<Task> response = async () => await handler.Handle(command, CancellationToken.None);

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Ofx.Battleship.API;
 using Ofx.Battleship.API.Enums;
-using Ofx.Battleship.API.Features.Ships;
+using Ofx.Battleship.API.Features.Ships.Create;
 using Ofx.Battleship.WebAPI.IntegrationTests.Common;
 using System.Threading.Tasks;
 using Xunit;
@@ -23,7 +23,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Ships
         {
             // Arrange
             var client = _factory.CreateClient();
-            var command = new Create.Command
+            var command = new Command
             {
                 BoardId = 1,
                 BowX = 3,
