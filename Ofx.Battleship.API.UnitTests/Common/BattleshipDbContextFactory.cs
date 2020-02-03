@@ -17,32 +17,32 @@ namespace Ofx.Battleship.API.UnitTests.Common
 
             context.Database.EnsureCreated();
 
-            var game = new Game { GameId = 1 };
-            context.Games.Add(game);
+            //var game = new Game { GameId = 1 };
+            //context.Games.Add(game);
 
-            var board = new Board { 
-                Game = game,
-                DimensionX = 10,
-                DimensionY = 10
-            };
-            context.Boards.Add(board);
+            //var board = new Board { 
+            //    Game = game,
+            //    DimensionX = 10,
+            //    DimensionY = 10
+            //};
+            //context.Boards.Add(board);
 
-            var ship = new Ship { Board = board };
-            context.Ships.Add(ship);
+            //var ship = new Ship { Board = board };
+            //context.Ships.Add(ship);
 
-            context.ShipParts.AddRange(new[]
-            {
-                new ShipPart { Ship = ship, X = 1, Y = 1 },
-                new ShipPart { Ship = ship, X = 1, Y = 2 }
-            });
+            //context.ShipParts.AddRange(new[]
+            //{
+            //    new ShipPart { Ship = ship, X = 1, Y = 1 },
+            //    new ShipPart { Ship = ship, X = 1, Y = 2 }
+            //});
 
-            var player = new Player
-            {
-                Name = "Pete"
-            };
-            context.Players.Add(player);
+            //var player = new Player
+            //{
+            //    Name = "Pete"
+            //};
+            //context.Players.Add(player);
 
-            context.SaveChanges();
+            //context.SaveChanges();
 
             return context;
         }

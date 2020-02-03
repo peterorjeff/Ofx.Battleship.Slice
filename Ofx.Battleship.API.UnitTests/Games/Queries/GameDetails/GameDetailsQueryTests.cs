@@ -2,45 +2,46 @@
 using FluentAssertions;
 using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Exceptions;
-using Ofx.Battleship.API.Features.Players.Details;
+using Ofx.Battleship.API.Features.Games.Details;
 using Ofx.Battleship.API.UnitTests.Common;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Ofx.Battleship.API.UnitTests.Players.Queries.PlayerDetails
+namespace Ofx.Battleship.API.UnitTests.Games.Queries.GameDetails
 {
-    public class PlayerDetailsQueryTests : IDisposable, IClassFixture<MappingTestFixture>
+    public class GameDetailsQueryTests : IDisposable, IClassFixture<MappingTestFixture>
     {
         private readonly BattleshipDbContext _context;
         private readonly IMapper _mapper;
 
-        public PlayerDetailsQueryTests(MappingTestFixture mappingTestFixture)
+        public GameDetailsQueryTests(MappingTestFixture mappingTestFixture)
         {
             _context = BattleshipDbContextFactory.Create();
             _mapper = mappingTestFixture.Mapper;
         }
 
         [Fact]
-        public async void Handle_GivenValidRequest_ShouldReturnCorrectPlayerDetails()
+        public async void Handle_GivenValidRequest_ShouldReturnGameDetails()
         {
             // Arrange
             var query = new Query { Id = 1 };
             var handler = new Handler(_context, _mapper);
-            _context.AddPlayer(player => player.WithId(1).WithName("Pete"));
+            _context.AddGame(game => game.WithId(query.Id));
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);
 
             // Assert
             response.Should().NotBeNull();
-            response.PlayerId.Should().Be(1);
-            response.Name.Should().Be("Pete");
+            response.GameId.Should().Be(query.Id);
         }
 
         [Fact]
-        public async void Handle_GivenUnknownPlayerId_ShouldThrowNotFoundException()
+        public async void Handle_GivenUnknownGameId_ShouldThrowNotFoundException()
         {
             // Arrange
             var query = new Query { Id = 1 };
