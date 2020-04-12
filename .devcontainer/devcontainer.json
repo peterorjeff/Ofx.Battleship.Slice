@@ -1,0 +1,10 @@
+{
+  "dockerFile": "../Dockerfile",
+  "forwardPorts": [
+    5000,
+    5001
+  ],
+  "remoteEnv": {
+    "PROJECT": "/home/vsonline/workspace/Ofx.Battleship.API/Battleship.API.csproj"
+  }
+}
