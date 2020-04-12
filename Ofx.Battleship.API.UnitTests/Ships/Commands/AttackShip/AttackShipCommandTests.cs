@@ -1,5 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentAssertions;
+using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Ships.Attack;
 using Ofx.Battleship.API.UnitTests.Common;
@@ -10,12 +11,14 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
 {
-    public class AttackShipCommandTests : CommandTestBase, IClassFixture<MappingTestFixture>
+    public class AttackShipCommandTests : IClassFixture<MappingTestFixture>
     {
+        private readonly BattleshipDbContext _context;
         private readonly IMapper _mapper;
 
         public AttackShipCommandTests(MappingTestFixture fixture)
         {
+            _context = BattleshipDbContextFactory.Create();
             _mapper = fixture.Mapper;
         }
 
@@ -47,6 +50,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackY = 1
             };
             var handler = new Handler(_context, _mapper);
+            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId));
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -66,6 +70,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackY = 1
             };
             var handler = new Handler(_context, _mapper);
+            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId).WithShip(command.AttackX, command.AttackY));
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -87,6 +92,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackY = 9
             };
             var handler = new Handler(_context, _mapper);
+            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId));
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);

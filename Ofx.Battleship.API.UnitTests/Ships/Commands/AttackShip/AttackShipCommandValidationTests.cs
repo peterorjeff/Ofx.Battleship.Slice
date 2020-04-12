@@ -1,16 +1,19 @@
-﻿using FluentValidation.TestHelper;
+using FluentValidation.TestHelper;
+using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Features.Ships.Attack;
 using Ofx.Battleship.API.UnitTests.Common;
 using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
 {
-    public class AttackShipCommandValidationTests : CommandTestBase
+    public class AttackShipCommandValidationTests
     {
+        private readonly BattleshipDbContext _context;
         private readonly CommandValidator _validator;
 
         public AttackShipCommandValidationTests()
         {
+            _context = BattleshipDbContextFactory.Create();
             _validator = new CommandValidator(_context);
         }
 
@@ -39,6 +42,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackX = attackX,
                 AttackY = 1
             };
+            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId));
 
             // Act
             var result = _validator.TestValidate(command);
@@ -59,6 +63,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackX = 1,
                 AttackY = attackY
             };
+            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId));
 
             // Act
             var result = _validator.TestValidate(command);
