@@ -5,6 +5,8 @@ using Ofx.Battleship.API.Entities;
 using Ofx.Battleship.API.Exceptions;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Ofx.Battleship.API.Features.Games.Details
 {
@@ -22,7 +24,9 @@ namespace Ofx.Battleship.API.Features.Games.Details
         public async Task<Model> Handle(Query request, CancellationToken cancellationToken)
         {
             var entity = await _context.Games
-                .FindAsync(request.Id);
+                .Include(x => x.Boards)
+                .Where(x => x.GameId == request.Id)
+                .FirstOrDefaultAsync();
 
             if (entity == null)
             {

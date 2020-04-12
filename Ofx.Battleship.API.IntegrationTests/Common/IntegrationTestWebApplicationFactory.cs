@@ -32,7 +32,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Common
 
                     using var scope = sp.CreateScope();
                     var scopedServices = scope.ServiceProvider;
-                    
+
                     var context = scopedServices.GetRequiredService<BattleshipDbContext>();
                     context.Database.EnsureCreated();
 
@@ -45,7 +45,11 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Common
                         DimensionX = 10,
                         DimensionY = 10
                     };
-                    context.Boards.Add(board);
+                    context.Boards.AddRange(new[]
+                    {
+                        board,
+                        new Board { Game = game, DimensionX = 10, DimensionY = 10 }
+                    });
 
                     var ship = new Ship { Board = board };
                     context.Ships.Add(ship);
