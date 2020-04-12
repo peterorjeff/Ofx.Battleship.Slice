@@ -5,7 +5,10 @@ namespace Ofx.Battleship.API.Features.Games.Details
 {
     public class MappingProfile : Profile
     {
-        public MappingProfile() =>
-            CreateMap<Game, Model>(MemberList.Source);
+        public MappingProfile()
+        {
+            CreateMap<Game, Model>();
+            CreateMap<Board, BoardModel>();
+        }
     }
 }

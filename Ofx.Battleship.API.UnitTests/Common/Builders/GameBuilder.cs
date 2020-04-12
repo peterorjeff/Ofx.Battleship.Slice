@@ -14,6 +14,12 @@ namespace Ofx.Battleship.API.UnitTests.Common.Builders
             return this;
         }
 
+        public GameBuilder WithBoard(int id)
+        {
+            _game.Boards.Add(new Board { BoardId = id });
+            return this;
+        }
+
         public Game Build() => _game;
     }
 }

@@ -30,7 +30,12 @@ namespace Ofx.Battleship.API.UnitTests.Games.Queries.GameDetails
             // Arrange
             var query = new Query { Id = 1 };
             var handler = new Handler(_context, _mapper);
-            _context.AddGame(game => game.WithId(query.Id));
+            _context.AddGame(game =>
+            {
+                game.WithId(query.Id)
+                    .WithBoard(1)
+                    .WithBoard(2);
+            });
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);
@@ -38,6 +43,8 @@ namespace Ofx.Battleship.API.UnitTests.Games.Queries.GameDetails
             // Assert
             response.Should().NotBeNull();
             response.GameId.Should().Be(query.Id);
+            response.Boards.Should().NotBeNull();
+            response.Boards.Count.Should().Be(2);
         }
 
         [Fact]
