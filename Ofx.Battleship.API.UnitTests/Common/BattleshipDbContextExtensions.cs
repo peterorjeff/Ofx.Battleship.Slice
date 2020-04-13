@@ -1,10 +1,10 @@
-﻿using Ofx.Battleship.API.Data;
+using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.UnitTests.Common.Builders;
 using System;
 
 namespace Ofx.Battleship.API.UnitTests.Common
 {
-    public static class BattleshipDbContextExtentions
+    public static class BattleshipDbContextExtensions
     {
         public static void AddGame(this BattleshipDbContext context, Action<GameBuilder> action)
         {
