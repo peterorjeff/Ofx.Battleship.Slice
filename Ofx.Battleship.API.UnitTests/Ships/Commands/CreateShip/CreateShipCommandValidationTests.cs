@@ -1,4 +1,5 @@
-﻿using FluentValidation.TestHelper;
+using FluentValidation.TestHelper;
+using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Features.Ships.Create;
 using Ofx.Battleship.API.UnitTests.Common;
@@ -6,12 +7,14 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
 {
-    public class CreateShipCommandValidationTests : CommandTestBase
+    public class CreateShipCommandValidationTests
     {
+        private readonly BattleshipDbContext _context;
         private readonly CommandValidator _validator;
 
         public CreateShipCommandValidationTests()
         {
+            _context = BattleshipDbContextFactory.Create();
             _validator = new CommandValidator(_context);
         }
 
@@ -39,6 +42,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 BoardId = 1,
                 BowX = bowX
             };
+            _context.AddGame(game => game.WithBoard(command.BoardId));
 
             // Act
             var result = _validator.TestValidate(command);
@@ -58,6 +62,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 BoardId = 1,
                 BowY = bowY
             };
+            _context.AddGame(game => game.WithBoard(command.BoardId));
 
             // Act
             var result = _validator.TestValidate(command);
@@ -77,6 +82,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Length = 3,
                 Orientation = ShipOrientation.Horizontal
             };
+            _context.AddGame(game => game.WithBoard(command.BoardId));
 
             // Act
             var result = _validator.TestValidate(command);
@@ -96,6 +102,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Length = 3,
                 Orientation = ShipOrientation.Vertical
             };
+            _context.AddGame(game => game.WithBoard(command.BoardId));
 
             // Act
             var result = _validator.TestValidate(command);

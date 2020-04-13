@@ -1,5 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentAssertions;
+using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Ships.Create;
@@ -11,12 +12,14 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
 {
-    public class CreateShipCommandTests : CommandTestBase, IClassFixture<MappingTestFixture>
+    public class CreateShipCommandTests : IClassFixture<MappingTestFixture>
     {
+        private readonly BattleshipDbContext _context;
         private readonly IMapper _mapper;
 
         public CreateShipCommandTests(MappingTestFixture fixture)
         {
+            _context = BattleshipDbContextFactory.Create();
             _mapper = fixture.Mapper;
         }
 
@@ -54,6 +57,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Orientation = ShipOrientation.Horizontal
             };
             var handler = new Handler(_context);
+            _context.AddGame(game => game.WithBoard(command.BoardId));
 
             // Act
             var shipId = await handler.Handle(command, CancellationToken.None);
@@ -75,6 +79,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Orientation = ShipOrientation.Horizontal
             };
             var handler = new Handler(_context);
+            _context.AddGame(game => game.WithBoard(command.BoardId).WithShip(command.BowX, command.BowY));
 
             // Act
             Func<Task> response = async () => await handler.Handle(command, CancellationToken.None);
