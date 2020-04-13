@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentAssertions;
 using Ofx.Battleship.API.Features.Games.Create;
 using Ofx.Battleship.API.UnitTests.Common;
@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Games.Commands.CreateGame
 {
-    public class CreateGameCommandTests : CommandTestBase, IClassFixture<MappingTestFixture>
+    public class CreateGameCommandTests : TestBase, IClassFixture<MappingTestFixture>
     {
         private readonly IMapper _mapper;
 

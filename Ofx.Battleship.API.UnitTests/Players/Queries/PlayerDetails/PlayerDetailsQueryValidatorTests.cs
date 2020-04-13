@@ -1,8 +1,5 @@
-﻿using FluentValidation.TestHelper;
+using FluentValidation.TestHelper;
 using Ofx.Battleship.API.Features.Players.Details;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Players.Queries.PlayerDetails

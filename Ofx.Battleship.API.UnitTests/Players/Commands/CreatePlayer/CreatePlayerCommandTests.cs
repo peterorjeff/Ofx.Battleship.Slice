@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Players.Commands.CreatePlayer
 {
-    public class CreatePlayerCommandTests : CommandTestBase
+    public class CreatePlayerCommandTests : TestBase
     {
         [Fact]
         public async void Handle_GivenValidRequest_ShouldReturnNewPlayerId()

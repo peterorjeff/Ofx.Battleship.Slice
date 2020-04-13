@@ -1,13 +1,16 @@
-﻿using Ofx.Battleship.API.Data;
+using Ofx.Battleship.API.Data;
 using System;
 
 namespace Ofx.Battleship.API.UnitTests.Common
 {
-    public class CommandTestBase : IDisposable
+    /// <summary>
+    /// Base class for Contructor() and Dispose() to force separate DbContext per Test.
+    /// </summary>
+    public class TestBase : IDisposable
     {
         protected readonly BattleshipDbContext _context;
 
-        public CommandTestBase()
+        public TestBase()
         {
             _context = BattleshipDbContextFactory.Create();
         }

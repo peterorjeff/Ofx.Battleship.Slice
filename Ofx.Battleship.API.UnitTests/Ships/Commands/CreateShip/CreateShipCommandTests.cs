@@ -1,6 +1,5 @@
 using AutoMapper;
 using FluentAssertions;
-using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Ships.Create;
@@ -12,14 +11,12 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
 {
-    public class CreateShipCommandTests : IClassFixture<MappingTestFixture>
+    public class CreateShipCommandTests : TestBase, IClassFixture<MappingTestFixture>
     {
-        private readonly BattleshipDbContext _context;
         private readonly IMapper _mapper;
 
         public CreateShipCommandTests(MappingTestFixture fixture)
         {
-            _context = BattleshipDbContextFactory.Create();
             _mapper = fixture.Mapper;
         }
 

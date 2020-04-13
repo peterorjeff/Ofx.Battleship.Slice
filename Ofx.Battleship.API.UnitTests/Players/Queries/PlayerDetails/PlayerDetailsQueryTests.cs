@@ -1,6 +1,5 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentAssertions;
-using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Players.Details;
 using Ofx.Battleship.API.UnitTests.Common;
@@ -11,14 +10,12 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Players.Queries.PlayerDetails
 {
-    public class PlayerDetailsQueryTests : IDisposable, IClassFixture<MappingTestFixture>
+    public class PlayerDetailsQueryTests : TestBase, IClassFixture<MappingTestFixture>
     {
-        private readonly BattleshipDbContext _context;
         private readonly IMapper _mapper;
 
         public PlayerDetailsQueryTests(MappingTestFixture mappingTestFixture)
         {
-            _context = BattleshipDbContextFactory.Create();
             _mapper = mappingTestFixture.Mapper;
         }
 
@@ -28,7 +25,7 @@ namespace Ofx.Battleship.API.UnitTests.Players.Queries.PlayerDetails
             // Arrange
             var query = new Query { Id = 1 };
             var handler = new Handler(_context, _mapper);
-            _context.AddPlayer(player => player.WithId(1).WithName("Pete"));
+            _context.AddPlayer(player => player.WithId(query.Id).WithName("Pete"));
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);
@@ -51,11 +48,6 @@ namespace Ofx.Battleship.API.UnitTests.Players.Queries.PlayerDetails
 
             // Assert
             await response.Should().ThrowAsync<NotFoundException>();
-        }
-
-        public void Dispose()
-        {
-            BattleshipDbContextFactory.Destroy(_context);
         }
     }
 }

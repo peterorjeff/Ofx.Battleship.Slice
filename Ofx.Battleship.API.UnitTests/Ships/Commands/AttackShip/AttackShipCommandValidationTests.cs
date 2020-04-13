@@ -1,19 +1,16 @@
 using FluentValidation.TestHelper;
-using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Features.Ships.Attack;
 using Ofx.Battleship.API.UnitTests.Common;
 using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
 {
-    public class AttackShipCommandValidationTests
+    public class AttackShipCommandValidationTests : TestBase
     {
-        private readonly BattleshipDbContext _context;
         private readonly CommandValidator _validator;
 
         public AttackShipCommandValidationTests()
         {
-            _context = BattleshipDbContextFactory.Create();
             _validator = new CommandValidator(_context);
         }
 

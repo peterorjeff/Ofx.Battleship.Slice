@@ -1,5 +1,4 @@
 using FluentValidation.TestHelper;
-using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Features.Ships.Create;
 using Ofx.Battleship.API.UnitTests.Common;
@@ -7,14 +6,12 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
 {
-    public class CreateShipCommandValidationTests
+    public class CreateShipCommandValidationTests : TestBase
     {
-        private readonly BattleshipDbContext _context;
         private readonly CommandValidator _validator;
 
         public CreateShipCommandValidationTests()
         {
-            _context = BattleshipDbContextFactory.Create();
             _validator = new CommandValidator(_context);
         }
 

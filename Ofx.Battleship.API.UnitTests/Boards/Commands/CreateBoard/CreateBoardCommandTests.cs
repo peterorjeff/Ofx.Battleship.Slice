@@ -1,6 +1,5 @@
 using AutoMapper;
 using FluentAssertions;
-using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Exceptions;
 using Ofx.Battleship.API.Features.Boards.Create;
 using Ofx.Battleship.API.UnitTests.Common;
@@ -11,14 +10,12 @@ using Xunit;
 
 namespace Ofx.Battleship.API.UnitTests.Boards.Commands.CreateBoard
 {
-    public class CreateBoardCommandTests : IClassFixture<MappingTestFixture>
+    public class CreateBoardCommandTests : TestBase, IClassFixture<MappingTestFixture>
     {
-        private readonly BattleshipDbContext _context;
         private readonly IMapper _mapper;
 
         public CreateBoardCommandTests(MappingTestFixture fixture)
         {
-            _context = BattleshipDbContextFactory.Create();
             _mapper = fixture.Mapper;
         }
 
