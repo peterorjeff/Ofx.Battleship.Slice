@@ -1,28 +1,22 @@
 using FluentAssertions;
-using Ofx.Battleship.API.ServerTests.Common;
+using Ofx.Battleship.API.ServerTests.Infrastructure;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
 
 namespace Ofx.Battleship.API.ServerTests.Features.Games
 {
-    public class CreateGameTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
+    public class CreateGameTests
     {
-        private readonly IntegrationTestWebApplicationFactory<Startup> _factory;
-
-        public CreateGameTests(IntegrationTestWebApplicationFactory<Startup> factory)
-        {
-            _factory = factory;
-        }
-
         [Fact]
         public async Task CreateGame_ReturnsNewGameId()
         {
             // Arrange
-            var client = _factory.CreateClient();
+            await using var server = new Server();
+            await server.StartAsync();
 
             // Act
-            var response = await client.PostAsync("/api/games", null);
+            var response = await server.Client.PostAsync("/api/games", null);
             
             response.EnsureSuccessStatusCode();
 

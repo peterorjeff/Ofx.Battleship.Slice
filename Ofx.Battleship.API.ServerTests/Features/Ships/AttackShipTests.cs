@@ -1,36 +1,35 @@
 using FluentAssertions;
 using Ofx.Battleship.API.Features.Ships.Attack;
-using Ofx.Battleship.API.ServerTests.Common;
+using Ofx.Battleship.API.ServerTests.Infrastructure;
+using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
 
 namespace Ofx.Battleship.API.ServerTests.Features.Ships
 {
-    public class AttackShipTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
+    public class AttackShipTests
     {
-        private readonly IntegrationTestWebApplicationFactory<Startup> _factory;
-
-        public AttackShipTests(IntegrationTestWebApplicationFactory<Startup> factory)
-        {
-            _factory = factory;
-        }
-
         [Fact]
         public async Task AttackShip_ReturnsHit()
         {
             // Arrange
-            var client = _factory.CreateClient();
+            await using var server = new Server();
+            await server.StartAsync();
+            var game = await server.NewGame().SaveAsync();
+            var board = await server.NewBoard().WithGame(game).SaveAsync();
+            var ship = await server.NewShip().WithBoard(board).SaveAsync();
+            var shipPart = await server.NewShipPart().WithShip(ship).WithCoordinates(1, 1).SaveAsync();
             var command = new Command
             {
-                BoardId = 1,
-                AttackX = 1,
-                AttackY = 1
+                BoardId = board.BoardId,
+                AttackX = shipPart.X,
+                AttackY = shipPart.Y
             };
             var requestContent = GetRequestContent(command);
 
             // Act
-            var response = await client.PutAsync("/api/ships/attack", requestContent);
+            var response = await server.Client.PutAsync("/api/ships/attack", requestContent);
 
             response.EnsureSuccessStatusCode();
 
@@ -46,17 +45,20 @@ namespace Ofx.Battleship.API.ServerTests.Features.Ships
         public async Task AttackWater_ReturnsMiss()
         {
             // Arrange
-            var client = _factory.CreateClient();
+            await using var server = new Server();
+            await server.StartAsync();
+            var game = await server.NewGame().SaveAsync();
+            var board = await server.NewBoard().WithGame(game).SaveAsync();
             var command = new Command
             {
-                BoardId = 1,
+                BoardId = board.BoardId,
                 AttackX = 9,
                 AttackY = 9
             };
             var requestContent = GetRequestContent(command);
 
             // Act
-            var response = await client.PutAsync("/api/ships/attack", requestContent);
+            var response = await server.Client.PutAsync("/api/ships/attack", requestContent);
 
             response.EnsureSuccessStatusCode();
 

@@ -1,31 +1,28 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Ofx.Battleship.API.Features.Games.Details;
-using Ofx.Battleship.API.ServerTests.Common;
+using Ofx.Battleship.API.ServerTests.Infrastructure;
+using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
 
 namespace Ofx.Battleship.API.ServerTests.Features.Games
 {
-    public class GameDetailsTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
+    public class GameDetailsTests
     {
-        private readonly IntegrationTestWebApplicationFactory<Startup> _factory;
-
-        public GameDetailsTests(IntegrationTestWebApplicationFactory<Startup> factory)
-        {
-            _factory = factory;
-        }
-
         [Fact]
         public async Task GameDetailsForKnownId_ReturnsGameDetails()
         {
             // Arrange
-            var client = _factory.CreateClient();
-            var gameId = 1;
+            await using var server = new Server();
+            await server.StartAsync();
+            var game = await server.NewGame().SaveAsync();
+            await server.NewBoard().WithGame(game).SaveAsync();
+            await server.NewBoard().WithGame(game).SaveAsync();
 
             // Act
-            var response = await client.GetAsync($"/api/games/{gameId}");
+            var response = await server.Client.GetAsync($"/api/games/{game.GameId}");
 
             response.EnsureSuccessStatusCode();
 
@@ -33,7 +30,7 @@ namespace Ofx.Battleship.API.ServerTests.Features.Games
 
             // Assert
             content.Should().NotBeNull();
-            content.GameId.Should().Be(gameId);
+            content.GameId.Should().Be(game.GameId);
             content.Boards.Should().NotBeNull();
             content.Boards.Count.Should().Be(2);
         }
@@ -42,11 +39,12 @@ namespace Ofx.Battleship.API.ServerTests.Features.Games
         public async Task GameDetailsForUnknownId_ReturnsNotFoundStatusCode()
         {
             // Arrange
-            var client = _factory.CreateClient();
+            await using var server = new Server();
+            await server.StartAsync();
             var gameId = 100;
 
             // Act
-            var response = await client.GetAsync($"/api/games/{gameId}");
+            var response = await server.Client.GetAsync($"/api/games/{gameId}");
 
             // Assert
             response.StatusCode.Should().Be(StatusCodes.Status404NotFound);

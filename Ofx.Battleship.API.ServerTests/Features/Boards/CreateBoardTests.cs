@@ -1,34 +1,27 @@
 using FluentAssertions;
 using Ofx.Battleship.API.Features.Boards.Create;
-using Ofx.Battleship.API.ServerTests.Common;
+using Ofx.Battleship.API.ServerTests.Infrastructure;
+using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
 
 namespace Ofx.Battleship.API.ServerTests.Features.Boards
 {
-    public class CreateBoardTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
+    public class CreateBoardTests
     {
-        private readonly IntegrationTestWebApplicationFactory<Startup> _factory;
-
-        public CreateBoardTests(IntegrationTestWebApplicationFactory<Startup> factory)
-        {
-            _factory = factory;
-        }
-
         [Fact]
         public async Task CreateBoard_ReturnsNewBoardIdAndDimensions()
         {
             // Arrange
-            var client = _factory.CreateClient();
-            var command = new Command
-            {
-                GameId = 1
-            };
+            await using var server = new Server();
+            await server.StartAsync();
+            var game = await server.NewGame().SaveAsync();
+            var command = new Command { GameId = game.GameId };
             var requestContent = GetRequestContent(command);
 
             // Act
-            var response = await client.PostAsync("/api/boards", requestContent);
+            var response = await server.Client.PostAsync("/api/boards", requestContent);
 
             response.EnsureSuccessStatusCode();
 

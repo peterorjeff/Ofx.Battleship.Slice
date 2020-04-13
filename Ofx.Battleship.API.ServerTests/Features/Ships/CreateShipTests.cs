@@ -1,30 +1,27 @@
 using FluentAssertions;
 using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Features.Ships.Create;
-using Ofx.Battleship.API.ServerTests.Common;
+using Ofx.Battleship.API.ServerTests.Infrastructure;
+using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
 
 namespace Ofx.Battleship.API.ServerTests.Features.Ships
 {
-    public class CreateShipTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
+    public class CreateShipTests
     {
-        private readonly IntegrationTestWebApplicationFactory<Startup> _factory;
-
-        public CreateShipTests(IntegrationTestWebApplicationFactory<Startup> factory)
-        {
-            _factory = factory;
-        }
-
         [Fact]
         public async Task CreateShip_ReturnsNewShip()
         {
             // Arrange
-            var client = _factory.CreateClient();
+            await using var server = new Server();
+            await server.StartAsync();
+            var game = await server.NewGame().SaveAsync();
+            var board = await server.NewBoard().WithGame(game).SaveAsync();
             var command = new Command
             {
-                BoardId = 1,
+                BoardId = board.BoardId,
                 BowX = 3,
                 BowY = 1,
                 Length = 2,
@@ -33,7 +30,7 @@ namespace Ofx.Battleship.API.ServerTests.Features.Ships
             var requestContent = GetRequestContent(command);
 
             // Act
-            var response = await client.PostAsync("/api/ships", requestContent);
+            var response = await server.Client.PostAsync("/api/ships", requestContent);
 
             response.EnsureSuccessStatusCode();
 

@@ -2,6 +2,8 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Ofx.Battleship.API.Features.Players.Details;
 using Ofx.Battleship.API.ServerTests.Common;
+using Ofx.Battleship.API.ServerTests.Infrastructure;
+using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
@@ -10,22 +12,16 @@ namespace Ofx.Battleship.API.ServerTests.Features.Players
 {
     public class PlayerDetailsTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
     {
-        private readonly IntegrationTestWebApplicationFactory<Startup> _factory;
-
-        public PlayerDetailsTests(IntegrationTestWebApplicationFactory<Startup> factory)
-        {
-            _factory = factory;
-        }
-
         [Fact]
         public async Task PlayerDetails_ReturnsPlayerDetails()
         {
             // Arrange
-            var client = _factory.CreateClient();
-            var playerId = 1;
+            await using var server = new Server();
+            await server.StartAsync();
+            var player = await server.NewPlayer().WithPlayerName("Pete").SaveAsync();
 
             // Act
-            var response = await client.GetAsync($"api/players/{playerId}");
+            var response = await server.Client.GetAsync($"api/players/{player.PlayerId}");
 
             response.EnsureSuccessStatusCode();
 
@@ -33,7 +29,7 @@ namespace Ofx.Battleship.API.ServerTests.Features.Players
 
             // Assert
             content.Should().NotBeNull();
-            content.PlayerId.Should().Be(playerId);
+            content.PlayerId.Should().Be(player.PlayerId);
             content.Name.Should().NotBeNullOrEmpty();
         }
 
@@ -41,21 +37,15 @@ namespace Ofx.Battleship.API.ServerTests.Features.Players
         public async Task PlayerDetailsForUnknownId_ReturnsNotFoundStatusCode()
         {
             // Arrange
-            var client = _factory.CreateClient();
+            await using var server = new Server();
+            await server.StartAsync();
             var playerId = 100;
 
             // Act
-            var response = await client.GetAsync($"api/players/{playerId}");
-
-            //response.EnsureSuccessStatusCode();
-
-            //var content = await GetResponseContent<Model>(response);
+            var response = await server.Client.GetAsync($"api/players/{playerId}");
 
             // Assert
             response.StatusCode.Should().Be(StatusCodes.Status404NotFound);
-            //content.Should().NotBeNull();
-            //content.PlayerId.Should().Be(playerId);
-            //content.Name.Should().NotBeNullOrEmpty();
         }
     }
 }
