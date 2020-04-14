@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Ofx.Battleship.API;
 using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Entities;
 using System;
@@ -13,6 +14,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Common
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder
+                .UseStartup<TStartup>()
                 .ConfigureServices(services =>
                 {
                     // Create a new service provider.
@@ -38,6 +40,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Common
 
                     var game = new Game();
                     context.Games.Add(game);
+                    context.Games.Add(new Game());
 
                     var board = new Board
                     {

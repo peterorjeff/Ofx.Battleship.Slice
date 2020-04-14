@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Ofx.Battleship.API;
 using Ofx.Battleship.API.Features.Boards;
 using Ofx.Battleship.API.Features.Boards.Create;
@@ -25,7 +25,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Boards
             var client = _factory.CreateClient();
             var command = new Command
             {
-                GameId = 1
+                GameId = 2
             };
             var requestContent = GetRequestContent(command);
 
