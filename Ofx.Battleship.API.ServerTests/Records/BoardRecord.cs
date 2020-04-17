@@ -19,7 +19,13 @@ namespace Ofx.Battleship.API.ServerTests.Records
         public BoardRecord(IBattleshipDbContext context)
         {
             _context = context;
-            _board = new Board();
+            // Currently these defaults are specified on the CreateBoardCommand object. As we are bypassing that to insert this record, we need to define defaults again here.
+            // TODO: is there a better place to define them, so it will be only once? Or do they need to be constants/config somewhere?
+            _board = new Board
+            { 
+                DimensionX = 10,
+                DimensionY = 10
+            };
         }
 
         public BoardRecord WithBoardId(int boardId)
