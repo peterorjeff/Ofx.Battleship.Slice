@@ -1,7 +1,6 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Ofx.Battleship.API.Features.Players.Details;
-using Ofx.Battleship.API.ServerTests.Common;
 using Ofx.Battleship.API.ServerTests.Infrastructure;
 using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ using static Ofx.Battleship.API.ServerTests.Common.Utilities;
 
 namespace Ofx.Battleship.API.ServerTests.Features.Players
 {
-    public class PlayerDetailsTests : IClassFixture<IntegrationTestWebApplicationFactory<Startup>>
+    public class PlayerDetailsTests
     {
         [Fact]
         public async Task PlayerDetails_ReturnsPlayerDetails()

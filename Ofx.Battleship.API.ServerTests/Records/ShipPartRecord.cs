@@ -1,9 +1,6 @@
 using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Entities;
 using Ofx.Battleship.API.ServerTests.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

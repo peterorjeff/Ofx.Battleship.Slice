@@ -39,6 +39,7 @@ namespace Ofx.Battleship.API.ServerTests.Infrastructure
                     webBuilder.ConfigureKestrel(options => options.ListenAnyIP(port));
                 });
 
+            // We need to call this separately, so that it is after UseStartup and the DbContext is loaded.
             hostBuilder.ConfigureServices((context, services) =>
             {
                 // Remove the application BattleshipDbContext registration.
