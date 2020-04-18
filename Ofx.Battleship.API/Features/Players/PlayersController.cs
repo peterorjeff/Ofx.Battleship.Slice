@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ofx.Battleship.API.Features.Players.Create;
 using Ofx.Battleship.API.Features.Players.Details;
@@ -22,9 +22,9 @@ namespace Ofx.Battleship.API.Features.Players
         [ProducesResponseType(500)]
         public async Task<ActionResult<int>> Create([FromBody] Command command)
         {
-            var gameId = await Mediator.Send(command);
+            var playerId = await Mediator.Send(command);
 
-            return Ok(gameId);
+            return Ok(playerId);
         }
 
         /// <summary>
