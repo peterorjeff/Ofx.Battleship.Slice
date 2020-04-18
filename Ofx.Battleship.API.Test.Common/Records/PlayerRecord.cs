@@ -3,7 +3,7 @@ using Ofx.Battleship.API.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Ofx.Battleship.API.ServerTests.Records
+namespace Ofx.Battleship.API.Test.Common.Records
 {
     public class PlayerRecord
     {
