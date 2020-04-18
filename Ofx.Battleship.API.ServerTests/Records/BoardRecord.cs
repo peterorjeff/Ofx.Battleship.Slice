@@ -1,16 +1,10 @@
 using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Entities;
-using Ofx.Battleship.API.ServerTests.Infrastructure;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ofx.Battleship.API.ServerTests.Records
 {
-    public static class BoardRecordExtensions
-    {
-        public static BoardRecord NewBoard(this Server server) => new BoardRecord(server.DbContext);
-    }
-
     public class BoardRecord
     {
         private readonly IBattleshipDbContext _context;

@@ -1,16 +1,10 @@
 using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Entities;
-using Ofx.Battleship.API.ServerTests.Infrastructure;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ofx.Battleship.API.ServerTests.Records
 {
-    public static class ShipRecordExtensions
-    {
-        public static ShipRecord NewShip(this Server server) => new ShipRecord(server.DbContext);
-    }
-
     public class ShipRecord
     {
         private readonly IBattleshipDbContext _context;
