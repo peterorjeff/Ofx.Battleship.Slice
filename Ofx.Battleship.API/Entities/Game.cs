@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Ofx.Battleship.API.Entities
 {
@@ -6,11 +6,11 @@ namespace Ofx.Battleship.API.Entities
     {
         public Game()
         {
-            Boards = new HashSet<Board>();
+            Players = new HashSet<Player>();
         }
 
         public int GameId { get; set; }
 
-        public ICollection<Board> Boards { get; private set; }
+        public ICollection<Player> Players { get; private set; }
     }
 }

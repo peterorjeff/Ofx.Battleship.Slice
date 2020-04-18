@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using MediatR;
 using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Entities;
@@ -24,7 +24,7 @@ namespace Ofx.Battleship.API.Features.Games.Details
         public async Task<Model> Handle(Query request, CancellationToken cancellationToken)
         {
             var entity = await _context.Games
-                .Include(x => x.Boards)
+                .Include(x => x.Players)
                 .Where(x => x.GameId == request.Id)
                 .FirstOrDefaultAsync();
 

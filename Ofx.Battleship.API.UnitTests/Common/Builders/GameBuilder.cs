@@ -5,9 +5,12 @@ namespace Ofx.Battleship.API.UnitTests.Common.Builders
     public class GameBuilder
     {
         private readonly Game _game;
-        private Board _board;
+        private Player _player;
 
-        public GameBuilder() => _game = new Game();
+        public GameBuilder()
+        {
+            _game = new Game();
+        }
 
         public GameBuilder WithId(int id)
         {
@@ -15,10 +18,10 @@ namespace Ofx.Battleship.API.UnitTests.Common.Builders
             return this;
         }
 
-        public GameBuilder WithBoard(int id)
+        public GameBuilder WithPlayer(int id)
         {
-            _board = new Board { BoardId = id };
-            _game.Boards.Add(_board);
+            _player = new Player { PlayerId = id };
+            _game.Players.Add(_player);
             return this;
         }
 
@@ -26,7 +29,7 @@ namespace Ofx.Battleship.API.UnitTests.Common.Builders
         {
             var ship = new Ship();
             ship.ShipParts.Add(new ShipPart { Ship = ship, X = x, Y = y });
-            _board.Ships.Add(ship);
+            _player.Ships.Add(ship);
             return this;
         }
 

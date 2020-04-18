@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Ofx.Battleship.API.Entities
 {
@@ -13,7 +13,7 @@ namespace Ofx.Battleship.API.Entities
         public int DimensionX { get; set; }
         public int DimensionY { get; set; }
 
-        public Game Game { get; set; }
+        public Player Player { get; set; }
         public ICollection<Ship> Ships { get; private set; }
     }
 }

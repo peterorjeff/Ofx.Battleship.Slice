@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 
 namespace Ofx.Battleship.API.Features.Boards.Create
 {
@@ -6,7 +6,7 @@ namespace Ofx.Battleship.API.Features.Boards.Create
     {
         public CommandValidator()
         {
-            RuleFor(x => x.GameId).GreaterThan(0).NotEmpty();
+            RuleFor(x => x.PlayerId).GreaterThan(0).NotEmpty();
 
             RuleFor(x => x.DimensionX)
                 .GreaterThan(5)

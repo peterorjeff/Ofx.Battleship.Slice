@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ofx.Battleship.API.Entities;
 
 namespace Ofx.Battleship.API.Features.Games.Details
@@ -8,7 +8,7 @@ namespace Ofx.Battleship.API.Features.Games.Details
         public MappingProfile()
         {
             CreateMap<Game, Model>();
-            CreateMap<Board, BoardModel>();
+            CreateMap<Player, PlayerModel>();
         }
     }
 }

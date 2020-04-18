@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace Ofx.Battleship.API.Features.Games.Details
 {
@@ -6,13 +6,12 @@ namespace Ofx.Battleship.API.Features.Games.Details
     {
         public int GameId { get; set; }
 
-        public ICollection<BoardModel> Boards { get; set; }
+        public ICollection<PlayerModel> Boards { get; set; }
     }
 
-    public class BoardModel
+    public class PlayerModel
     {
-        public int BoardId { get; set; }
-        public int DimensionX { get; set; }
-        public int DimensionY { get; set; }
+        public int PlayerId { get; set; }
+        public string Name { get; set; }
     }
 }

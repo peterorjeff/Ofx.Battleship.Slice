@@ -41,9 +41,9 @@ namespace Ofx.Battleship.API.ServerTests.Records
             return this;
         }
 
-        public BoardRecord WithGame(Game game)
+        public BoardRecord WithPlayer(Player player)
         {
-            _board.Game = game;
+            _board.Player = player;
             return this;
         }
 

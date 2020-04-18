@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using MediatR;
 using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Entities;
@@ -21,15 +21,15 @@ namespace Ofx.Battleship.API.Features.Boards.Create
 
         public async Task<Model> Handle(Command request, CancellationToken cancellationToken)
         {
-            var game = await _context.Games.FindAsync(request.GameId);
-            if (game == null)
+            var player = await _context.Players.FindAsync(request.PlayerId);
+            if (player == null)
             {
-                throw new NotFoundException(nameof(Game), request.GameId);
+                throw new NotFoundException(nameof(Player), request.PlayerId);
             }
 
             var entity = new Board
             {
-                Game = game,
+                Player = player,
                 DimensionX = request.DimensionX,
                 DimensionY = request.DimensionY,
             };
