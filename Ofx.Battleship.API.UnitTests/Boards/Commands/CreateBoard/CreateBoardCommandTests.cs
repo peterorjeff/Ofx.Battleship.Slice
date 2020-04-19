@@ -34,12 +34,13 @@ namespace Ofx.Battleship.API.UnitTests.Boards.Commands.CreateBoard
         }
 
         [Fact]
-        public async void Handle_GivenKnownGameId_ShouldReturnNewBoardId()
+        public async void Handle_GivenKnownPlayerId_ShouldReturnNewBoardId()
         {
             // Arrange
             var command = new Command { PlayerId = 1 };
             var handler = new Handler(_context, _mapper);
-            _context.AddGame(game => game.WithId(command.PlayerId));
+            var game = await _context.NewGame().SaveAsync();
+            await _context.NewPlayer().WithPlayerId(command.PlayerId).WithGame(game).SaveAsync();
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -49,12 +50,13 @@ namespace Ofx.Battleship.API.UnitTests.Boards.Commands.CreateBoard
         }
 
         [Fact]
-        public async void Handle_GivenKnownGameId_ShouldReturnBoardViewModel()
+        public async void Handle_GivenKnownPlayerId_ShouldReturnBoardViewModel()
         {
             // Arrange
             var command = new Command { PlayerId = 1 };
             var handler = new Handler(_context, _mapper);
-            _context.AddGame(game => game.WithId(command.PlayerId));
+            var game = await _context.NewGame().SaveAsync();
+            await _context.NewPlayer().WithPlayerId(command.PlayerId).WithGame(game).SaveAsync();
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -69,7 +71,8 @@ namespace Ofx.Battleship.API.UnitTests.Boards.Commands.CreateBoard
             // Arrange
             var command = new Command { PlayerId = 1 };
             var handler = new Handler(_context, _mapper);
-            _context.AddGame(game => game.WithId(command.PlayerId));
+            var game = await _context.NewGame().SaveAsync();
+            await _context.NewPlayer().WithPlayerId(command.PlayerId).WithGame(game).SaveAsync();
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -90,8 +93,8 @@ namespace Ofx.Battleship.API.UnitTests.Boards.Commands.CreateBoard
                 DimensionY = 12
             };
             var handler = new Handler(_context, _mapper);
-            _context.AddGame(game => game.WithId(1));
-            _context.AddPlayer(player => player.WithId(command.PlayerId));
+            var game = await _context.NewGame().SaveAsync();
+            await _context.NewPlayer().WithPlayerId(command.PlayerId).WithGame(game).SaveAsync();
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
