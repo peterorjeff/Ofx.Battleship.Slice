@@ -31,7 +31,7 @@ I made use of several libraries to aid clean architecture:
 - Fluent Validation https://fluentvalidation.net/
 - Fluent Assertions: https://fluentassertions.com/introduction
 
-## ToDo
+## ToDo - Playable Game
 Features to add with the aim of a playable game:
 
 - Players concept
@@ -42,6 +42,10 @@ Features to add with the aim of a playable game:
   - miss = other player turn
 - Game over
   - all ships on board sunk
+
+## ToDo - Other
+
+- AutoMapper Configuration Tests
 
 ## Future
 Some other things to play with in future:

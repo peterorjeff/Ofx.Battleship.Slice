@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 
 namespace Ofx.Battleship.API.UnitTests.Common
 {
@@ -12,6 +12,7 @@ namespace Ofx.Battleship.API.UnitTests.Common
                 configuration.AddProfile<Features.Boards.Create.MappingProfile>();
                 configuration.AddProfile<Features.Ships.Attack.MappingProfile>();
                 configuration.AddProfile<Features.Players.Details.MappingProfile>();
+                configuration.AddProfile<Features.Players.List.MappingProfile>();
             });
 
             Mapper = ConfigurationProvider.CreateMapper();
