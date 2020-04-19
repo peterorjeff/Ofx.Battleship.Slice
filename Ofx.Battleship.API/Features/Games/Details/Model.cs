@@ -6,7 +6,7 @@ namespace Ofx.Battleship.API.Features.Games.Details
     {
         public int GameId { get; set; }
 
-        public ICollection<PlayerModel> Boards { get; set; }
+        public ICollection<PlayerModel> Players { get; set; }
     }
 
     public class PlayerModel

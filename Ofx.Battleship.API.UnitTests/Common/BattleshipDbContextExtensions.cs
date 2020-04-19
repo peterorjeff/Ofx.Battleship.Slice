@@ -1,24 +1,18 @@
 using Ofx.Battleship.API.Data;
-using Ofx.Battleship.API.UnitTests.Common.Builders;
-using System;
+using Ofx.Battleship.API.Test.Common.Records;
 
 namespace Ofx.Battleship.API.UnitTests.Common
 {
     public static class BattleshipDbContextExtensions
     {
-        public static void AddGame(this BattleshipDbContext context, Action<GameBuilder> action)
-        {
-            var builder = new GameBuilder();
-            action(builder);
-            context.Games.Add(builder.Build());
-            context.SaveChanges();
-        }
-        public static void AddPlayer(this BattleshipDbContext context, Action<PlayerBuilder> action)
-        {
-            var builder = new PlayerBuilder();
-            action(builder);
-            context.Players.Add(builder.Build());
-            context.SaveChanges();
-        }
+        public static GameRecord NewGame(this BattleshipDbContext context) => new GameRecord(context);
+
+        public static PlayerRecord NewPlayer(this BattleshipDbContext context) => new PlayerRecord(context);
+
+        public static BoardRecord NewBoard(this BattleshipDbContext context) => new BoardRecord(context);
+
+        public static ShipPartRecord NewShipPart(this BattleshipDbContext context) => new ShipPartRecord(context);
+
+        public static ShipRecord NewShip(this BattleshipDbContext context) => new ShipRecord(context);
     }
 }
