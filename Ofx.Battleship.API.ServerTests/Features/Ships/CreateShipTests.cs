@@ -1,8 +1,8 @@
 using FluentAssertions;
 using Ofx.Battleship.API.Enums;
 using Ofx.Battleship.API.Features.Ships.Create;
+using Ofx.Battleship.API.ServerTests.Common;
 using Ofx.Battleship.API.ServerTests.Infrastructure;
-using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
@@ -18,7 +18,8 @@ namespace Ofx.Battleship.API.ServerTests.Features.Ships
             await using var server = new Server();
             await server.StartAsync();
             var game = await server.NewGame().SaveAsync();
-            var board = await server.NewBoard().WithGame(game).SaveAsync();
+            var player = await server.NewPlayer().WithGame(game).SaveAsync();
+            var board = await server.NewBoard().WithPlayer(player).SaveAsync();
             var command = new Command
             {
                 BoardId = board.BoardId,

@@ -1,8 +1,8 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Ofx.Battleship.API.Features.Games.Details;
+using Ofx.Battleship.API.ServerTests.Common;
 using Ofx.Battleship.API.ServerTests.Infrastructure;
-using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
@@ -18,8 +18,9 @@ namespace Ofx.Battleship.API.ServerTests.Features.Games
             await using var server = new Server();
             await server.StartAsync();
             var game = await server.NewGame().SaveAsync();
-            await server.NewBoard().WithGame(game).SaveAsync();
-            await server.NewBoard().WithGame(game).SaveAsync();
+            var player = await server.NewPlayer().WithGame(game).SaveAsync();
+            await server.NewBoard().WithPlayer(player).SaveAsync();
+            await server.NewBoard().WithPlayer(player).SaveAsync();
 
             // Act
             var response = await server.Client.GetAsync($"/api/games/{game.GameId}");
@@ -31,8 +32,8 @@ namespace Ofx.Battleship.API.ServerTests.Features.Games
             // Assert
             content.Should().NotBeNull();
             content.GameId.Should().Be(game.GameId);
-            content.Boards.Should().NotBeNull();
-            content.Boards.Count.Should().Be(2);
+            content.Players.Should().NotBeNull();
+            content.Players.Count.Should().Be(2);
         }
 
         [Fact]

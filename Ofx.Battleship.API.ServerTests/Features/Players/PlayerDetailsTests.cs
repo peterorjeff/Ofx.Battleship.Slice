@@ -1,8 +1,8 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Ofx.Battleship.API.Features.Players.Details;
+using Ofx.Battleship.API.ServerTests.Common;
 using Ofx.Battleship.API.ServerTests.Infrastructure;
-using Ofx.Battleship.API.ServerTests.Records;
 using System.Threading.Tasks;
 using Xunit;
 using static Ofx.Battleship.API.ServerTests.Common.Utilities;
@@ -29,7 +29,7 @@ namespace Ofx.Battleship.API.ServerTests.Features.Players
             // Assert
             content.Should().NotBeNull();
             content.PlayerId.Should().Be(player.PlayerId);
-            content.Name.Should().NotBeNullOrEmpty();
+            content.Name.Should().Be(player.Name);
         }
 
         [Fact]
