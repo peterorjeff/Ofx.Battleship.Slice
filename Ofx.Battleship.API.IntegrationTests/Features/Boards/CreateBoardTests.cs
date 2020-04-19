@@ -25,7 +25,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Boards
             var client = _factory.CreateClient();
             var command = new Command
             {
-                GameId = 2
+                PlayerId = 2
             };
             var requestContent = GetRequestContent(command);
 

@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Ofx.Battleship.API;
 using Ofx.Battleship.API.Data;
 using Ofx.Battleship.API.Entities;
 using System;
@@ -42,17 +41,26 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Common
                     context.Games.Add(game);
                     context.Games.Add(new Game());
 
+                    var playerOne = new Player
+                    {
+                        Name = "Pete",
+                        Game = game
+                    };
+                    var playerTwo = new Player
+                    {
+                        Name = "Michelle",
+                        Game = game
+                    };
+                    context.Players.Add(playerOne);
+                    context.Players.Add(playerTwo);
+
                     var board = new Board
                     {
-                        Game = game,
+                        Player = playerOne,
                         DimensionX = 10,
                         DimensionY = 10
                     };
-                    context.Boards.AddRange(new[]
-                    {
-                        board,
-                        new Board { Game = game, DimensionX = 10, DimensionY = 10 }
-                    });
+                    context.Boards.Add(board);
 
                     var ship = new Ship { Board = board };
                     context.Ships.Add(ship);
@@ -62,12 +70,6 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Common
                         new ShipPart { Ship = ship, X = 1, Y = 1 },
                         new ShipPart { Ship = ship, X = 1, Y = 2 }
                     });
-
-                    var player = new Player
-                    {
-                        Name = "Pete"
-                    };
-                    context.Players.Add(player);
 
                     context.SaveChanges();
                 });

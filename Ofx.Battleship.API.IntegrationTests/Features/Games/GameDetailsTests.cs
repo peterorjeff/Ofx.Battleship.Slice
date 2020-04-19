@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Ofx.Battleship.API;
 using Ofx.Battleship.API.Features.Games.Details;
@@ -35,8 +35,8 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Games
             // Assert
             content.Should().NotBeNull();
             content.GameId.Should().Be(gameId);
-            content.Boards.Should().NotBeNull();
-            content.Boards.Count.Should().Be(2);
+            content.Players.Should().NotBeNull();
+            content.Players.Count.Should().Be(1);
         }
 
         [Fact]
