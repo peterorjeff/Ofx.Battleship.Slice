@@ -1,4 +1,4 @@
-﻿using FluentValidation.TestHelper;
+using FluentValidation.TestHelper;
 using Ofx.Battleship.API.Features.Boards.Create;
 using Xunit;
 
@@ -14,13 +14,13 @@ namespace Ofx.Battleship.API.UnitTests.Boards.Commands.CreateBoard
         }
 
         [Fact]
-        public void GivenInvalidGameId_ShouldHaveValidationError()
+        public void GivenInvalidPlaterId_ShouldHaveValidationError()
         {
             // Arrange
             var gameId = -1;
 
             // Act & Assert
-            _validator.ShouldHaveValidationErrorFor(x => x.GameId, gameId);
+            _validator.ShouldHaveValidationErrorFor(x => x.PlayerId, gameId);
         }
 
         [Theory]
