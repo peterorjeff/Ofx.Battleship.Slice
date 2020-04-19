@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Ofx.Battleship.API.Entities;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,7 +12,7 @@ namespace Ofx.Battleship.API.Data
         DbSet<Ship> Ships { get; set; }
         DbSet<ShipPart> ShipParts { get; set; }
         DbSet<Player> Players { get; set; }
-
+        DbSet<Shot> Attack { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

@@ -34,14 +34,33 @@ I made use of several libraries to aid clean architecture:
 ## ToDo - Playable Game
 Features to add with the aim of a playable game:
 
-- Players concept
+- Game Player construct
+  - associative between game and player
+  - winner = p1/p2
+- Game State
+  - player one
+  - player two
+  - setup -> until all ships placed
+  - in progress
+  - gameover -> set winner/loser
 - Player ship inventory, number ot different size ships to add to board
   - pre-defined ship names/sizes
-- Turn concept
-  - hit = another turn
-  - miss = other player turn
-- Game over
-  - all ships on board sunk
+- Shot concept
+  - validate, who's turn etc
+  - hit -> update ship part
+  - record shot
+  - check gameover -> update game state
+
+## Rules of the Game
+
+Each player has 5 ships:
+- Carrier, which has five holes
+- Battleship, which has four holes
+- Cruiser, which has three holes
+- Submarine, which has three holes
+- Destroyer, which has two holes
+
+Reference: https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069
 
 ## ToDo - Other
 
