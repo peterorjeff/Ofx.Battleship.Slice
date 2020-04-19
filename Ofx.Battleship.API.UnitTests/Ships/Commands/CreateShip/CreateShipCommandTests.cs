@@ -54,7 +54,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Orientation = ShipOrientation.Horizontal
             };
             var handler = new Handler(_context);
-            _context.AddGame(game => game.WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var shipId = await handler.Handle(command, CancellationToken.None);
@@ -76,7 +78,11 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Orientation = ShipOrientation.Horizontal
             };
             var handler = new Handler(_context);
-            _context.AddGame(game => game.WithBoard(command.BoardId).WithShip(command.BowX, command.BowY));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            var board = await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
+            var ship = await _context.NewShip().WithBoard(board).SaveAsync();
+            await _context.NewShipPart().WithShip(ship).WithCoordinates(command.BowX, command.BowY).SaveAsync();
 
             // Act
             Func<Task> response = async () => await handler.Handle(command, CancellationToken.None);

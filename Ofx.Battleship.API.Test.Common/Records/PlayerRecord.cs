@@ -28,6 +28,12 @@ namespace Ofx.Battleship.API.Test.Common.Records
             return this;
         }
 
+        public PlayerRecord WithGame(Game game)
+        {
+            _player.Game = game;
+            return this;
+        }
+
         public async Task<Player> SaveAsync()
         {
             var player = _context.Players.Add(_player);

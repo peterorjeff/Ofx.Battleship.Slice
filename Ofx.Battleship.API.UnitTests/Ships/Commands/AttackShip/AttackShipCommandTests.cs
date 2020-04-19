@@ -47,7 +47,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackY = 1
             };
             var handler = new Handler(_context, _mapper);
-            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -67,7 +69,11 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackY = 1
             };
             var handler = new Handler(_context, _mapper);
-            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId).WithShip(command.AttackX, command.AttackY));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            var board = await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
+            var ship = await _context.NewShip().WithBoard(board).SaveAsync();
+            await _context.NewShipPart().WithShip(ship).WithCoordinates(command.AttackX, command.AttackY).SaveAsync();
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);
@@ -89,7 +95,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackY = 9
             };
             var handler = new Handler(_context, _mapper);
-            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var response = await handler.Handle(command, CancellationToken.None);

@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 
 namespace Ofx.Battleship.API.Features.Players.Create
 {

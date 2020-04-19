@@ -25,15 +25,15 @@ namespace Ofx.Battleship.API.UnitTests.Players.Queries.PlayerDetails
             // Arrange
             var query = new Query { Id = 1 };
             var handler = new Handler(_context, _mapper);
-            _context.AddPlayer(player => player.WithId(query.Id).WithName("Pete"));
+            var player = await _context.NewPlayer().WithPlayerId(query.Id).WithPlayerName("Pete").SaveAsync();
 
             // Act
             var response = await handler.Handle(query, CancellationToken.None);
 
             // Assert
             response.Should().NotBeNull();
-            response.PlayerId.Should().Be(1);
-            response.Name.Should().Be("Pete");
+            response.PlayerId.Should().Be(player.PlayerId);
+            response.Name.Should().Be(player.Name);
         }
 
         [Fact]

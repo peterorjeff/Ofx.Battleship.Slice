@@ -30,7 +30,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
         [Theory]
         [InlineData(0)]
         [InlineData(11)]
-        public void GivenInvalidBowX_ShouldHaveValidationError(int attackX)
+        public async void GivenInvalidBowX_ShouldHaveValidationError(int attackX)
         {
             // Arrange
             var command = new Command
@@ -39,7 +39,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackX = attackX,
                 AttackY = 1
             };
-            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var result = _validator.TestValidate(command);
@@ -51,7 +53,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
         [Theory]
         [InlineData(0)]
         [InlineData(11)]
-        public void GivenInvalidAttackY_ShouldHaveValidationError(int attackY)
+        public async void GivenInvalidAttackY_ShouldHaveValidationError(int attackY)
         {
             // Arrange
             var command = new Command
@@ -60,7 +62,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
                 AttackX = 1,
                 AttackY = attackY
             };
-            _context.AddGame(game => game.WithId(1).WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var result = _validator.TestValidate(command);

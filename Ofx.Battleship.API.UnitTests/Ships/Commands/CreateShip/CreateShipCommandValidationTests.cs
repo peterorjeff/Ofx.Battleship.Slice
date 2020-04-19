@@ -31,7 +31,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         [Theory]
         [InlineData(0)]
         [InlineData(11)]
-        public void GivenInvalidBowX_ShouldHaveValidationError(int bowX)
+        public async void GivenInvalidBowX_ShouldHaveValidationError(int bowX)
         {
             // Arrange
             var command = new Command 
@@ -39,7 +39,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 BoardId = 1,
                 BowX = bowX
             };
-            _context.AddGame(game => game.WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var result = _validator.TestValidate(command);
@@ -51,7 +53,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         [Theory]
         [InlineData(0)]
         [InlineData(11)]
-        public void GivenInvalidBowY_ShouldHaveValidationError(int bowY)
+        public async void GivenInvalidBowY_ShouldHaveValidationError(int bowY)
         {
             // Arrange
             var command = new Command
@@ -59,7 +61,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 BoardId = 1,
                 BowY = bowY
             };
-            _context.AddGame(game => game.WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var result = _validator.TestValidate(command);
@@ -69,7 +73,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         }
 
         [Fact]
-        public void GivenBowXAndLengthGreaterThanHorizontalBoardDimension_ShouldHaveValidationError()
+        public async void GivenBowXAndLengthGreaterThanHorizontalBoardDimension_ShouldHaveValidationError()
         {
             // Arrange
             var command = new Command
@@ -79,7 +83,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Length = 3,
                 Orientation = ShipOrientation.Horizontal
             };
-            _context.AddGame(game => game.WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var result = _validator.TestValidate(command);
@@ -89,7 +95,7 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
         }
 
         [Fact]
-        public void GivenBowYAndLengthGreaterThanVerticalBoardDimension_ShouldHaveValidationError()
+        public async void GivenBowYAndLengthGreaterThanVerticalBoardDimension_ShouldHaveValidationError()
         {
             // Arrange
             var command = new Command
@@ -99,7 +105,9 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.CreateShip
                 Length = 3,
                 Orientation = ShipOrientation.Vertical
             };
-            _context.AddGame(game => game.WithBoard(command.BoardId));
+            var game = await _context.NewGame().WithGameId(1).SaveAsync();
+            var player = await _context.NewPlayer().WithGame(game).SaveAsync();
+            await _context.NewBoard().WithBoardId(command.BoardId).WithPlayer(player).SaveAsync();
 
             // Act
             var result = _validator.TestValidate(command);
