@@ -18,9 +18,10 @@ namespace Ofx.Battleship.API.ServerTests.Features.Games
             await using var server = new Server();
             await server.StartAsync();
             var game = await server.NewGame().SaveAsync();
-            var player = await server.NewPlayer().WithGame(game).SaveAsync();
-            await server.NewBoard().WithPlayer(player).SaveAsync();
-            await server.NewBoard().WithPlayer(player).SaveAsync();
+            var playerOne = await server.NewPlayer().WithGame(game).SaveAsync();
+            var playerTwo = await server.NewPlayer().WithGame(game).SaveAsync();
+            await server.NewBoard().WithPlayer(playerOne).SaveAsync();
+            await server.NewBoard().WithPlayer(playerTwo).SaveAsync();
 
             // Act
             var response = await server.Client.GetAsync($"/api/games/{game.GameId}");

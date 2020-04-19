@@ -36,7 +36,7 @@ namespace Ofx.Battleship.WebAPI.IntegrationTests.Features.Games
             content.Should().NotBeNull();
             content.GameId.Should().Be(gameId);
             content.Players.Should().NotBeNull();
-            content.Players.Count.Should().Be(1);
+            content.Players.Count.Should().Be(2);
         }
 
         [Fact]
