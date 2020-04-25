@@ -46,10 +46,11 @@ Features to add with the aim of a playable game:
 - Player ship inventory, number ot different size ships to add to board
   - pre-defined ship names/sizes
 - Shot concept
-  - validate, who's turn etc
-  - hit -> update ship part
-  - record shot
-  - check gameover -> update game state
+  [x] validate, who's turn
+  [ ] validate current game
+  [x] hit -> update ship part
+  [x] record shot
+  [ ] check gameover -> update game state
 
 ## Rules of the Game
 
@@ -65,6 +66,7 @@ Reference: https://www.thesprucecrafts.com/the-basic-rules-of-battleship-411069
 ## ToDo - Other
 
 - AutoMapper Configuration Tests
+- Try out Respawn: https://github.com/jbogard/Respawn
 
 ## Future
 Some other things to play with in future:
