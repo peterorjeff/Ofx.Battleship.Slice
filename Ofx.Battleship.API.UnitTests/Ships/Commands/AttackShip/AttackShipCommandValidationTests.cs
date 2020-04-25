@@ -15,6 +15,19 @@ namespace Ofx.Battleship.API.UnitTests.Ships.Commands.AttackShip
         }
 
         [Fact]
+        public void GivenInvalidPlayerId_ShouldHaveValidationError()
+        {
+            // Arrange
+            var command = new Command { AttackerPlayerId = -1 };
+
+            // Act
+            var result = _validator.TestValidate(command);
+
+            // Assert
+            result.ShouldHaveValidationErrorFor(x => x.AttackerPlayerId);
+        }
+
+        [Fact]
         public void GivenInvalidBoardId_ShouldHaveValidationError()
         {
             // Arrange

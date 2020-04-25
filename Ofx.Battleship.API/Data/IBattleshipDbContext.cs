@@ -12,7 +12,7 @@ namespace Ofx.Battleship.API.Data
         DbSet<Ship> Ships { get; set; }
         DbSet<ShipPart> ShipParts { get; set; }
         DbSet<Player> Players { get; set; }
-        DbSet<Shot> Attack { get; set; }
+        DbSet<Shot> Shots { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

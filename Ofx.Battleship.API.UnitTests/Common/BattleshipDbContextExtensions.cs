@@ -14,5 +14,7 @@ namespace Ofx.Battleship.API.UnitTests.Common
         public static ShipPartRecord NewShipPart(this BattleshipDbContext context) => new ShipPartRecord(context);
 
         public static ShipRecord NewShip(this BattleshipDbContext context) => new ShipRecord(context);
+
+        public static ShotRecord NewShot(this BattleshipDbContext context) => new ShotRecord(context);
     }
 }

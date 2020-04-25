@@ -21,8 +21,10 @@ namespace Ofx.Battleship.API.ServerTests.Features.Ships
             var board = await server.NewBoard().WithPlayer(player).SaveAsync();
             var ship = await server.NewShip().WithBoard(board).SaveAsync();
             var shipPart = await server.NewShipPart().WithShip(ship).WithCoordinates(1, 1).SaveAsync();
+            
             var command = new Command
             {
+                AttackerPlayerId = player.PlayerId,
                 BoardId = board.BoardId,
                 AttackX = shipPart.X,
                 AttackY = shipPart.Y
@@ -51,8 +53,10 @@ namespace Ofx.Battleship.API.ServerTests.Features.Ships
             var game = await server.NewGame().SaveAsync();
             var player = await server.NewPlayer().WithGame(game).SaveAsync();
             var board = await server.NewBoard().WithPlayer(player).SaveAsync();
+            
             var command = new Command
             {
+                AttackerPlayerId = player.PlayerId,
                 BoardId = board.BoardId,
                 AttackX = 9,
                 AttackY = 9

@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Ofx.Battleship.API.Exceptions;
@@ -43,6 +43,10 @@ namespace Ofx.Battleship.WebAPI.Middleware
                 case BadRequestException badRequestException:
                     code = HttpStatusCode.BadRequest;
                     result = badRequestException.Message;
+                    break;
+                case OutOfTurnException outOfTurnException:
+                    code = HttpStatusCode.BadRequest;
+                    result = outOfTurnException.Message;
                     break;
                 case NotFoundException _:
                     code = HttpStatusCode.NotFound;

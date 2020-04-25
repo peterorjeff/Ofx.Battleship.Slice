@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Ofx.Battleship.API.Data;
 
 namespace Ofx.Battleship.API.Features.Ships.Attack
@@ -10,6 +10,10 @@ namespace Ofx.Battleship.API.Features.Ships.Attack
         public CommandValidator(IBattleshipDbContext context)
         {
             _context = context;
+
+            RuleFor(x => x.AttackerPlayerId)
+                .GreaterThan(0)
+                .NotEmpty();
 
             RuleFor(x => x.BoardId)
                 .GreaterThan(0)
