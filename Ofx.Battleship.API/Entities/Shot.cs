@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Ofx.Battleship.API.Entities
 {
     public class Shot
@@ -13,5 +8,9 @@ namespace Ofx.Battleship.API.Entities
         public bool Hit { get; set; }
 
         public Board Board { get; set; }
+
+        public Player Player { get; set; }
+
+        public ShipPart ShipPartHit { get; set; }
     }
 }
