@@ -13,6 +13,7 @@ namespace Ofx.Battleship.API.Data
         DbSet<ShipPart> ShipParts { get; set; }
         DbSet<Player> Players { get; set; }
         DbSet<Shot> Shots { get; set; }
+        DbSet<GamePlayer> GamePlayers { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
